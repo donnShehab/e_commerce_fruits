@@ -1,0 +1,48 @@
+import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
+import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
+import 'package:e_coomerce_fruit/feature/home/domain/entites/cart_entity.dart';
+import 'package:e_coomerce_fruit/feature/home/domain/entites/cart_item_entity.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/cubits/cart_cubit/cart_cubit.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/cubits/cart_cubit_item/cart_item_cubit.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/cart_view_body.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class CartItemActionButtons extends StatelessWidget {
+  const CartItemActionButtons({super.key, required this.cartItemEntity});
+  final CartItemEntity cartItemEntity;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        CartItemActionCircual(
+          iconColor: Colors.white,
+          icon: Icons.add,
+          onPressed: () {
+            cartItemEntity.increasCount();
+            context.read<CartItemCubit>().updateCartItem(cartItemEntity);
+          },
+          color: AppColors.primaryColor,
+        ),
+
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            cartItemEntity.quantity.toString(),
+            textAlign: TextAlign.center,
+            style: TextStyles.bold16,
+          ),
+        ),
+        CartItemActionCircual(
+          iconColor: Colors.grey,
+          icon: Icons.remove,
+          onPressed: () {
+            cartItemEntity.decreasCount();
+            context.read<CartItemCubit>().updateCartItem(cartItemEntity);
+          },
+          color: Color(0xFFF3F5F7),
+        ),
+      ],
+    );
+  }
+}

@@ -204,28 +204,72 @@ class FirebaseAuthService {
     }
   }
 
-  //   void phoneAuth(BuildContext context, String phoneNumber) async {
-  //     await FirebaseAuth.instance.verifyPhoneNumber(
-  //       phoneNumber: phoneNumber,
-  //       verificationCompleted: (PhoneAuthCredential credential) async {
-  //         // Auto verification (Android only)
-  //         await FirebaseAuth.instance.signInWithCredential(credential);
-  //       },
-  //       verificationFailed: (FirebaseAuthException e) {
-  //         debugPrint('Verification failed: ${e.message}');
-  //       },
-  //       codeSent: (String verificationId, int? resendToken) async {
-  //         // ✅ لما يوصلك verificationId انتقل لصفحة OTP وخزنه
-  //         GoRouter.of(context).push(
-  //           AppRouter.kOtpPassword,
-  //           extra: verificationId,
-
-  //         );
-  //       },
-  //       codeAutoRetrievalTimeout: (String verificationId) {},
-  //     );
-  //   }
   bool isLoggedIn() {
     return FirebaseAuth.instance.currentUser != null;
+  }
+
+  // إرسال OTP لإعادة تعيين كلمة المرور عبر الهاتف
+  Future<void> sendOtp(String phoneNumber, Function(String) onCodeSent) async {
+    try {
+      print('📱 بدء إرسال OTP لرقم الهاتف: $phoneNumber');
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          print('✅ التحقق التلقائي تم (Android فقط)');
+          await FirebaseAuth.instance.signInWithCredential(credential);
+        },
+
+        verificationFailed: (FirebaseAuthException e) {
+          print('❌ فشل التحقق: ${e.message}');
+          throw CustomException(message: 'فشل إرسال OTP: ${e.message}');
+        },
+
+        codeSent: (String verificationId, int? resendToken) {
+          print('📨 تم إرسال OTP، verificationId: $verificationId');
+          onCodeSent(
+            verificationId,
+          ); // إرجاع verificationId للاستخدام في التحقق
+        },
+
+        codeAutoRetrievalTimeout: (String verificationId) {
+          print(
+            '⏰ انتهت مهلة الاسترجاع التلقائي، verificationId: $verificationId',
+          );
+
+          onCodeSent(verificationId);
+        },
+      );
+    } catch (e) {
+      log('Exception in FirebaseAuthService.sendOtp: ${e.toString()}');
+      throw CustomException(message: 'حدث خطأ أثناء إرسال OTP.');
+    }
+  }
+
+  // التحقق من OTP وتسجيل الدخول المؤقت
+  Future<UserCredential> verifyOtpAndSignIn(
+    String verificationId,
+    String otp,
+  ) async {
+    try {
+      print('🔍 التحقق من OTP: $otp مع verificationId: $verificationId');
+
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: otp,
+      );
+
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithCredential(credential);
+      print('✅ تسجيل الدخول المؤقت نجح للمستخدم: ${userCredential.user?.uid}');
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      print('❌ خطأ في التحقق من OTP: ${e.code}');
+      throw CustomException(message: 'OTP غير صحيح أو منتهي الصلاحية.');
+    } catch (e) {
+      log(
+        'Exception in FirebaseAuthService.verifyOtpAndSignIn: ${e.toString()}',
+      );
+      throw CustomException(message: 'حدث خطأ أثناء التحقق من OTP.');
+    }
   }
 }

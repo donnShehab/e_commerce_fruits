@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "624722495028",
+    "project_id": "loginui-44026",
+    "storage_bucket": "loginui-44026.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624722495028:android:1b1277ff809d615c682c61",
+        "android_client_info": {
+          "package_name": "com.example.e_coomerce_fruit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624722495028-u3g7amoaao49jruum6ukmrvlhp5m8r6r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1YToCztoVemGJSgrsx6q9RCHFAuin1h8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624722495028-u3g7amoaao49jruum6ukmrvlhp5m8r6r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
