@@ -41,10 +41,11 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     bool isOnBoardingViewSeen = Prefs.getBool(kIsOnBoardingViewSeen);
     Future.delayed(Duration(seconds: 3), () {
       if (isOnBoardingViewSeen) {
-        // var isLoggedIn = FirebaseAuthService().isLoggedIn();
-        // if (isLoggedIn) {
-        //   // GoRouter.of(context).push(AppRouter.kHomeView);
-        // }
+        var isLoggedIn = FirebaseAuthService().isLoggedIn();
+        if (isLoggedIn) {
+          GoRouter.of(context).push(AppRouter.kHomeView);
+        }
+        else
         {
           GoRouter.of(context).push(AppRouter.kSigninView);
         }

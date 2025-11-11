@@ -3,6 +3,7 @@ import 'package:e_coomerce_fruit/core/services/custom_bloc_observer.dart';
 import 'package:e_coomerce_fruit/core/services/get_it_services.dart';
 import 'package:e_coomerce_fruit/core/services/shared_preferences_singleton.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:e_coomerce_fruit/firebase_options.dart';
 import 'package:e_coomerce_fruit/generated/l10n.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,7 +19,15 @@ void main() async {
 
   setupGetIt();
 
-  runApp(const FruitsHub());
+  runApp(
+    BlocProvider(
+      // box 2
+      // Add global BlocProvider for CartCubit
+      create: (context) => CartCubit(),
+
+      child: const FruitsHub(),
+    ),
+     )   ;
 }
 
 class FruitsHub extends StatelessWidget {

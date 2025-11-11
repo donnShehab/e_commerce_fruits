@@ -22,4 +22,11 @@ class Prefs {
   static getString(String key) {
     return _instance.getString(key) ?? '';
   }
+  static List<String> getStringList(String key) {
+    return _instance.getStringList(key) ?? [];
+  }
+
+  static Future<bool> setStringList(String key, List<String> value) async {
+    return await _instance.setStringList(key, value);
+  }
 }

@@ -9,6 +9,8 @@ class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit(this.productsRepo) : super(ProductsInitial());
   final ProductsRepo productsRepo;
   int productsLength = 0;
+  // Add this private list (after productsLength)
+
 
   Future<void> getProducts() async {
     emit(ProductsLoading());
@@ -39,4 +41,5 @@ class ProductsCubit extends Cubit<ProductsState> {
       },
     );
   }
+  
 }

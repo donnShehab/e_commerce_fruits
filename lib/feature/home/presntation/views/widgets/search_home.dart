@@ -1,8 +1,59 @@
 import 'package:e_coomerce_fruit/constants.dart';
+import 'package:e_coomerce_fruit/core/cubit/products_cubit.dart';
 import 'package:e_coomerce_fruit/core/utils/app_images.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+
+// class SearchTextField extends StatelessWidget {
+//   const SearchTextField({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 40,
+//       width: double.infinity, // يخلي TextField يتمدد
+//       child: TextField(
+//         decoration: InputDecoration(
+//           border: InputBorder.none,
+//           hintText: 'ابحث عن ......',
+//           hintStyle: TextStyles.regular13.copyWith(
+//             color: Color(0xff949D9E),
+//             fontSize: 14,
+//           ),
+//           prefixIcon: Padding(
+//             padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
+//             child: SvgPicture.asset(
+//               Assets.imagesSearchNormal,
+//               height: 24,
+//               width: 24,
+//             ),
+//           ),
+//           suffixIcon: Padding(
+//             padding: EdgeInsets.symmetric(horizontal: kHorizintalPadding),
+//             child: SvgPicture.asset(
+//               Assets.imagesSetting4,
+//               width: 24,
+//               height: 24,
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+import 'package:e_coomerce_fruit/constants.dart';
+import 'package:e_coomerce_fruit/core/cubit/products_cubit.dart';
+import 'package:e_coomerce_fruit/core/utils/app_images.dart';
+import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
+import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart'; // Added for routing
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart'; // Added for navigation
 
 class SearchTextField extends StatelessWidget {
   const SearchTextField({super.key});
@@ -11,29 +62,40 @@ class SearchTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      width: double.infinity, // يخلي TextField يتمدد
-      child: TextField(
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: 'ابحث عن ......',
-          hintStyle: TextStyles.regular13.copyWith(
-            color: Color(0xff949D9E),
-            fontSize: 14,
-          ),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
-            child: SvgPicture.asset(
-              Assets.imagesSearchNormal,
-              height: 24,
-              width: 24,
-            ),
-          ),
-          suffixIcon: Padding(
-            padding: EdgeInsets.symmetric(horizontal: kHorizintalPadding),
-            child: SvgPicture.asset(
-              Assets.imagesSetting4,
-              width: 24,
-              height: 24,
+      width: double.infinity,
+      child: GestureDetector(
+        // Added: Detects tap to navigate
+        onTap: () => GoRouter.of(
+          context,
+        ).push(AppRouter.kSearchView), // Navigates to search page
+        child: AbsorbPointer(
+          // Added: Prevents direct input on home page
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'ابحث عن ......',
+              hintStyle: TextStyles.regular13.copyWith(
+                color: Color(0xff949D9E),
+                fontSize: 14,
+              ),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kHorizintalPadding,
+                ),
+                child: SvgPicture.asset(
+                  Assets.imagesSearchNormal,
+                  height: 24,
+                  width: 24,
+                ),
+              ),
+              suffixIcon: Padding(
+                padding: EdgeInsets.symmetric(horizontal: kHorizintalPadding),
+                child: SvgPicture.asset(
+                  Assets.imagesSetting4,
+                  width: 24,
+                  height: 24,
+                ),
+              ),
             ),
           ),
         ),
@@ -41,3 +103,60 @@ class SearchTextField extends StatelessWidget {
     );
   }
 }
+
+
+// class SearchTextField extends StatelessWidget {
+//   const SearchTextField({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 40,
+
+//       width: double.infinity,
+
+//       child: TextField(
+//         onChanged: (value) {
+//           // Add this line
+
+//         },
+
+//         decoration: InputDecoration(
+//           border: InputBorder.none,
+
+//           hintText: 'ابحث عن ......',
+
+//           hintStyle: TextStyles.regular13.copyWith(
+//             color: Color(0xff949D9E),
+
+//             fontSize: 14,
+//           ),
+
+//           prefixIcon: Padding(
+//             padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
+
+//             child: SvgPicture.asset(
+//               Assets.imagesSearchNormal,
+
+//               height: 24,
+
+//               width: 24,
+//             ),
+//           ),
+
+//           suffixIcon: Padding(
+//             padding: EdgeInsets.symmetric(horizontal: kHorizintalPadding),
+
+//             child: SvgPicture.asset(
+//               Assets.imagesSetting4,
+
+//               width: 24,
+
+//               height: 24,
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

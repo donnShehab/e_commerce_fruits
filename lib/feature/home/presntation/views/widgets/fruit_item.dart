@@ -43,42 +43,7 @@ class FruitItem extends StatelessWidget {
                     : Container(color: Colors.grey, height: 100, width: 100),
 
                 const SizedBox(height: 24),
-                // Padding(
-                //   padding: EdgeInsets.symmetric(horizontal: kHorizintalPadding),
-                //   child: Align(
-                //     alignment: Alignment.centerRight,
-                //     child: Text(
-                //       name,
-                //       style: TextStyles.semiBold13.copyWith(
-                //         color: Colors.black,
-                //         fontWeight: FontWeight.w700,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // const SizedBox(height: 4),
-                // Row(
-                //   children: [
-                //     Text(
-                //       price,
-                //       style: TextStyles.bold13.copyWith(
-                //         color: AppColors.secondryColor,
-                //       ),
-                //     ),
-                //     Text(
-                //       unit,
-                //       style: TextStyles.semiBold13.copyWith(
-                //         color: AppColors.lightSecondryColor,
-                //       ),
-                //     ),
-                //     const Spacer(),
-                //     AddProductButton(
-                //       onAdd: () {
-                //         GoRouter.of(context).push(AppRouter.kAddingProductView);
-                //       },
-                //     ),
-                //   ],
-                // ),
+               
                 ListTile(
                   title: Text(
                     productEntity.name,
