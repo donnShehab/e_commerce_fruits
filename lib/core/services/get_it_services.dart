@@ -10,6 +10,8 @@ import 'package:e_coomerce_fruit/core/services/firestore_service.dart';
 import 'package:e_coomerce_fruit/core/services/storage_service.dart';
 import 'package:e_coomerce_fruit/feature/auth/data/repos/auth_repo_impl.dart';
 import 'package:e_coomerce_fruit/feature/auth/domain/repos/auth_repos.dart';
+import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/signout_cubit/signout_cubit_cubit.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/cubits/review_cubit/review_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -30,4 +32,6 @@ void setupGetIt() {
   );
   getIt.registerSingleton<ImagesRepo>(ImagesRepoImpl(getIt<StorageService>()));
   getIt.registerSingleton<OrderRepo>(OrderRepoImpl(getIt<DataBaseService>()));
+  getIt.registerSingleton<ReviewsCubit>(ReviewsCubit());
+  getIt.registerSingleton<SignoutCubitCubit>(SignoutCubitCubit());
 }

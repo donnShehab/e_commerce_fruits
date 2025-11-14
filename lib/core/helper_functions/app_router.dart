@@ -1,3 +1,4 @@
+import 'package:e_coomerce_fruit/core/entities/product_entity.dart';
 import 'package:e_coomerce_fruit/core/helper_functions/get_dummy_product.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/views/forget_password_view.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/views/otp_password_view.dart';
@@ -8,8 +9,12 @@ import 'package:e_coomerce_fruit/feature/checkout/presntation/views/checkout_vie
 import 'package:e_coomerce_fruit/feature/home/domain/entites/cart_entity.dart';
 import 'package:e_coomerce_fruit/feature/home/domain/entites/cart_item_entity.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/main_view.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/views/reviews_view.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/search_view.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/about_us.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/best_selling_grid_view.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/personal_info_view.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/product_view_details.dart';
 import 'package:e_coomerce_fruit/feature/on_boarding/presntation/view/on_boarding_view.dart';
 import 'package:e_coomerce_fruit/feature/splash/presntation/views/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +34,10 @@ abstract class AppRouter {
   static const kBestSellingFruitView = '/BestSellingFruitView';
   static const kCheckout = '/Checkout';
   static const kSearchView = '/SearchView';
+  static const kPersonalInfoView = '/PersonalInfoView';
+  static const kAboutUs = '/AboutUs';
+  static const kProductViewDetails = '/ProductViewDetails';
+  static const kReviewsView = '/ReviewsView';
 
   static final router = GoRouter(
     initialLocation: kSplashView,
@@ -71,9 +80,27 @@ abstract class AppRouter {
           return CheckoutView(cartEntity: cartItems);
         },
       ),
+      GoRoute(path: kSearchView, builder: (context, state) => SearchView()),
       GoRoute(
-        path: kSearchView,
-        builder: (context, state) => SearchView(),
+        path: kPersonalInfoView,
+        builder: (context, state) => PersonalInfoView(),
+      ),
+      GoRoute(path: kAboutUs, builder: (context, state) => AboutUs()),
+      GoRoute(
+        path: kProductViewDetails,
+
+        builder: (context, state) {
+          final product = state.extra as ProductEntity; // Pass product data
+
+          return ProductDetailView(product: product);
+        },
+      ),
+      GoRoute(
+        path: kReviewsView,
+        builder: (context, state) {
+          final productId = state.extra as String;
+          return ReviewsView(productId: productId);
+        },
       ),
     ],
   );

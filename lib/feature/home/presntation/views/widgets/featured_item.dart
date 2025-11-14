@@ -25,7 +25,7 @@ class FeaturedItem extends StatelessWidget {
                 bottom: 0,
                 right: itemWidth * .4,
                 child: SvgPicture.asset(
-                  Assets.imagesOnBoarding2,
+                  Assets.imagesOnBoardingTwo,
                   fit: BoxFit.fill,
                 ),
               ),

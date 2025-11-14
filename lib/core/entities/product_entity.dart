@@ -16,8 +16,9 @@ class ProductEntity extends Equatable {
   final num avgRating = 0;
   final num ratingCount = 0;
   final int unitAmount;
+  final String id;
   final List<ReviewEntity> reviews;
-  ProductEntity({
+  ProductEntity(this.id, {
     required this.name,
     required this.code,
     required this.description,

@@ -1,6 +1,8 @@
 import 'package:e_coomerce_fruit/core/entities/product_entity.dart';
+import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/fruit_item.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductsGridView extends StatelessWidget {
   const ProductsGridView({super.key, required this.products});
@@ -16,8 +18,12 @@ class ProductsGridView extends StatelessWidget {
         mainAxisSpacing: 16,
         crossAxisSpacing: 16,
       ),
-      itemBuilder: (context, index) =>
-          FruitItem(productEntity: products[index]),
+      itemBuilder: (context, index) => GestureDetector(
+        onTap: () {
+          GoRouter.of(context).push(AppRouter.kProductViewDetails,extra: products[index]);
+        },
+        child: FruitItem(productEntity: products[index]),
+      ),
     );
   }
 }

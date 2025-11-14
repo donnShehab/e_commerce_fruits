@@ -37,3 +37,4 @@ abstract class AuthRepo {
     String newPassword,
   );
 }
+ 

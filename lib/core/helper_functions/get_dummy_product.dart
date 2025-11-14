@@ -4,6 +4,7 @@ import 'package:e_coomerce_fruit/core/entities/product_entity.dart';
 
 ProductEntity getDummyProduct() {
   return ProductEntity(
+    '1',
     name: 'Apple',
     code: '123',
     description: 'Fresh apple',

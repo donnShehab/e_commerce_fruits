@@ -384,4 +384,6 @@ class AuthRepoImpl extends AuthRepo {
       );
     }
   }
+  // sign out
+
 }

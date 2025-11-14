@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:e_coomerce_fruit/constants.dart';
 import 'package:e_coomerce_fruit/core/helper_functions/build_error_bar.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
+import 'package:e_coomerce_fruit/core/utils/app_images.dart';
 import 'package:e_coomerce_fruit/core/utils/app_keys.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_button.dart';
 import 'package:e_coomerce_fruit/feature/checkout/domain/entites/order_input_entity.dart';
@@ -128,6 +129,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         return 'التالي';
       case 2:
         return 'الدفع عبر  PayPal';
+
       default:
         return 'Next';
     }

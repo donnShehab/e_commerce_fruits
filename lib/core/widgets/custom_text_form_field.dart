@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
+    this.initialValue,
     required this.hintText,
     required this.textInputType,
     this.suffixIcon,
@@ -13,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
     this.textDirection,
     this.validator,
   });
+  final String? initialValue;
   final TextDirection? textDirection;
   final String hintText;
   final TextInputType textInputType;

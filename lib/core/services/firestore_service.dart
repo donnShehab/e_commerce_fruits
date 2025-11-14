@@ -130,4 +130,5 @@ class FirestoreService implements DataBaseService {
       throw Exception('فشل في استرجاع البيانات: $e');
     }
   }
+  
 }

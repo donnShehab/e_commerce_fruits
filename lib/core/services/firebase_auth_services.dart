@@ -14,6 +14,17 @@ class FirebaseAuthService {
   Future deleteUser() async {
     await FirebaseAuth.instance.currentUser!.delete();
   }
+  // logout user
+  Future<void> logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      log("Exception in FirebaseAuthService.logout: ${e.toString()}");
+      throw CustomException(
+        message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+      );
+    }
+  }
 
   // create user
   Future<User> createUserWithEmailAndPassword({
@@ -272,4 +283,6 @@ class FirebaseAuthService {
       throw CustomException(message: 'حدث خطأ أثناء التحقق من OTP.');
     }
   }
+
+
 }

@@ -101,6 +101,7 @@ import 'review_model.dart';
 import '../helper_functions/get_avg_rating.dart';
 
 class ProductModel {
+  final String id;
   final String name;
   final String code;
   final String description;
@@ -116,6 +117,7 @@ class ProductModel {
   final List<ReviewModel> reviews;
 
   ProductModel({
+    required this.id,
     required this.avgRating,
     required this.name,
     required this.code,
@@ -141,6 +143,7 @@ class ProductModel {
     }
 
     return ProductModel(
+      id: json['id'] ?? '', // حماية null
       avgRating: getAvgRating(reviewsList),
       name: json['name'] ?? '', // حماية null
       code: json['code'] ?? '',
@@ -159,6 +162,7 @@ class ProductModel {
 
   ProductEntity toEntity() {
     return ProductEntity(
+      id,
       name: name,
       code: code,
       description: description,
