@@ -79,6 +79,7 @@ import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_app_bar.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_button.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/signout_cubit/signout_cubit_cubit.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/custom_logout_dialog.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/profile_image_picker.dart';
 import 'package:e_coomerce_fruit/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -262,40 +263,10 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     showDialog(
       context: context,
 
-      builder: (context) => AlertDialog(
-        title: Text('تسجيل الخروج', textAlign: TextAlign.right),
+      barrierDismissible: false, // Matches your code
 
-        content: Text(
-          'هل أنت متأكد من تسجيل الخروج؟',
-          textAlign: TextAlign.right,
-        ),
-
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-
-            child: Text('إلغاء'),
-          ),
-
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context); // Close dialog
-
-              await getIt<SignoutCubitCubit>().logout(); // Logout via cubit
-
-              // Navigate to signin (assuming AppRouter.kSignin exists)
-
-              GoRouter.of(context).go(AppRouter.kSigninView);
-
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text('تم تسجيل الخروج')));
-            },
-
-            child: Text('تسجيل الخروج', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
+      builder: (context) => LogoutDialog(), // Use your custom dialog
     );
   }
 }
+
