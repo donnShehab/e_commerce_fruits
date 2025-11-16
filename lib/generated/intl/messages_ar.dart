@@ -21,5 +21,47 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "agreeTerms": MessageLookupByLibrary.simpleMessage(
+      "يجب عليك الموافقة على الشروط والإحكام",
+    ),
+    "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "تمتلك حساب بالفعل؟",
+    ),
+    "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+    "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "enterCode": MessageLookupByLibrary.simpleMessage(
+      "أدخل الرمز الذي أرسلناه إلى رقم هاتفك",
+    ),
+    "error": MessageLookupByLibrary.simpleMessage("حدث خطأ."),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ ما. الرجاء المحاولة مرة اخرى.",
+    ),
+    "forgotPassword": MessageLookupByLibrary.simpleMessage("نسيان كلمة المرور"),
+    "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
+    "login": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
+    "newAccount": MessageLookupByLibrary.simpleMessage("حساب جديد"),
+    "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+    "or": MessageLookupByLibrary.simpleMessage("أو"),
+    "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "passwordResetSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم إعادة تعيين كلمة المرور بنجاح!",
+    ),
+    "phone": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+    "phoneNotRegistered": MessageLookupByLibrary.simpleMessage(
+      "رقم الهاتف غير مسجل.",
+    ),
+    "requiredField": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
+    "resetInstructions": MessageLookupByLibrary.simpleMessage(
+      "لا تقلق ، ما عليك سوى كتابة رقم هاتفك وسنرسل رمز التحقق.",
+    ),
+    "resetPassword": MessageLookupByLibrary.simpleMessage(
+      "إعادة تعيين كلمة المرور",
+    ),
+    "sendVerificationCode": MessageLookupByLibrary.simpleMessage(
+      "إرسال رمز التحقق",
+    ),
+    "verifyCode": MessageLookupByLibrary.simpleMessage("التحقق من الرمز"),
+  };
 }

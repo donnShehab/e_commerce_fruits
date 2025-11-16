@@ -21,5 +21,47 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "agreeTerms": MessageLookupByLibrary.simpleMessage(
+      "You must agree to the terms and conditions",
+    ),
+    "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Already have an account?",
+    ),
+    "createAccount": MessageLookupByLibrary.simpleMessage("Create New Account"),
+    "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "enterCode": MessageLookupByLibrary.simpleMessage(
+      "Enter the code sent to your phone number",
+    ),
+    "error": MessageLookupByLibrary.simpleMessage("Error."),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage(
+      "An error occurred. Please try again.",
+    ),
+    "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
+    "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "newAccount": MessageLookupByLibrary.simpleMessage("New Account"),
+    "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
+    "or": MessageLookupByLibrary.simpleMessage("Or"),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordResetSuccess": MessageLookupByLibrary.simpleMessage(
+      "Password has been reset successfully!",
+    ),
+    "phone": MessageLookupByLibrary.simpleMessage("Phone Number"),
+    "phoneNotRegistered": MessageLookupByLibrary.simpleMessage(
+      "Phone number not registered.",
+    ),
+    "requiredField": MessageLookupByLibrary.simpleMessage(
+      "This field is required",
+    ),
+    "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
+    "resetInstructions": MessageLookupByLibrary.simpleMessage(
+      "Don\'t worry, just enter your phone number and we will send a verification code.",
+    ),
+    "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+    "sendVerificationCode": MessageLookupByLibrary.simpleMessage(
+      "Send Verification Code",
+    ),
+    "verifyCode": MessageLookupByLibrary.simpleMessage("Verify Code"),
+  };
 }

@@ -67,138 +67,67 @@ class _ProductDetailViewState extends State<ProductDetailView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Product Image with Subtle Overlay
-              // Stack(
-              //   children: [
-              //     Container(
-              //       height: 100,
-              //       width: 70,
-              //       decoration: BoxDecoration(
-              //         color: Color(0xffF3F5F7),
-              //         borderRadius: BorderRadius.only(
-              //           bottomLeft: Radius.circular(32),
-              //           bottomRight: Radius.circular(32),
-              //         ),
-              //         // gradient: LinearGradient(
-              //         //   begin: Alignment.topCenter,
-              //         //   end: Alignment.bottomCenter,
-              //         //   colors: [
-              //         //     Colors.transparent,
-              //         //     Colors.white.withOpacity(0.3),
-              //         //   ],
-              //         // ),
-              //       ),
-              //       child: Container(
-              //         height: 500,
-              //         width: 500,
-              //         decoration: BoxDecoration(
-              //           // color: Color(0xFFF3F5F7),
-              //           image: DecorationImage(
-              //             image: widget.product.imageUrl != null
-              //                 ? NetworkImage(widget.product.imageUrl!)
-              //                 : AssetImage('assets/images/watermelon.png')
-              //                       as ImageProvider, // Placeholder for Watermelon
-              //             fit: BoxFit.cover,
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              Container(
-                height: 400, // Background height
+              SizedBox(
+                height: 500,
+                child: Stack(
+                  children: [
+                    // Image with CachedNetworkImage for professional loading
+                    Positioned.fill(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(30),
 
-                width: 400, // Background width
-                decoration: BoxDecoration(
-                  color: Color(0xFFF3F5F7), // Background color #F3F5F7
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(
-                      80,
-                    ), // Border radius bottom left
-                    bottomRight: Radius.circular(
-                      80,
-                    ), // Border radius bottom right
-                  ),
-                ),
-                child: Center(
-                  // Center the inner image container
-                  child: Container(
-                    height: 167, // Image height
-                    width: 221, // Image width
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: widget.product.imageUrl != null
-                            ? NetworkImage(widget.product.imageUrl!)
-                            : AssetImage('assets/images/watermelon.png')
-                                  as ImageProvider, // Placeholder for Watermelon
-                        fit: BoxFit.cover,
+                          bottomRight: Radius.circular(30),
+                        ),
+
+                        child: CachedNetworkImage(
+                          imageUrl:
+                              widget.product.imageUrl ??
+                              'https://via.placeholder.com/400x400?text=Watermelon', // Fallback URL
+
+                          placeholder: (context, url) => Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
+
+                          errorWidget: (context, url, error) => Center(
+                            child: Icon(
+                              Icons.image_not_supported,
+                              size: 50,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+
+                    // Subtle Gradient Overlay for Depth
+                    Positioned.fill(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+
+                            end: Alignment.bottomCenter,
+
+                            colors: [
+                              Colors.transparent,
+                              Colors.black.withOpacity(0.1),
+                            ],
+                          ),
+
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(30),
+
+                            bottomRight: Radius.circular(30),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              // SizedBox(
-              //   height: 500,
-              //   child: Stack(
-              //     children: [
-              //       // Image with CachedNetworkImage for professional loading
-              //       Positioned.fill(
-              //         child: ClipRRect(
-              //           borderRadius: BorderRadius.only(
-              //             bottomLeft: Radius.circular(30),
-
-              //             bottomRight: Radius.circular(30),
-              //           ),
-
-              //           child: CachedNetworkImage(
-              //             imageUrl:
-
-              //                 widget.product.imageUrl ??
-              //                 'https://via.placeholder.com/400x400?text=Watermelon', // Fallback URL
-
-              //             placeholder: (context, url) => Center(
-              //               child: CircularProgressIndicator(
-              //                 color: AppColors.primaryColor,
-              //               ),
-              //             ),
-
-              //             errorWidget: (context, url, error) => Center(
-              //               child: Icon(
-              //                 Icons.image_not_supported,
-              //                 size: 50,
-              //                 color: Colors.grey,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-
-              //       // Subtle Gradient Overlay for Depth
-              //       Positioned.fill(
-              //         child: Container(
-              //           decoration: BoxDecoration(
-              //             gradient: LinearGradient(
-              //               begin: Alignment.topCenter,
-
-              //               end: Alignment.bottomCenter,
-
-              //               colors: [
-              //                 Colors.transparent,
-              //                 Colors.black.withOpacity(0.1),
-              //               ],
-              //             ),
-
-              //             borderRadius: BorderRadius.only(
-              //               bottomLeft: Radius.circular(30),
-
-              //               bottomRight: Radius.circular(30),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -294,18 +223,18 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                 // add logic here mmm cubit, add navigate to reviews page
                               },
                               child: GestureDetector(
-                                onTap: (){
+                                onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ReviewsView(productId:widget.product.id,),
+                                      builder: (context) => ReviewsView(
+                                        productId: widget.product.id,
+                                      ),
                                     ),
                                   );
                                 },
                                 child: Text.rich(
-                                  
                                   TextSpan(
-                                
                                     text: 'المراجعة',
                                     style: TextStyles.regular22.copyWith(
                                       color: AppColors.primaryColor,

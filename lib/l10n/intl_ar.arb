@@ -1,1 +1,26 @@
-{}
+{
+  "@@locale": "ar",
+  "password": "كلمة المرور",
+  "requiredField": "هذا الحقل مطلوب",
+  "errorOccurred": "حدث خطأ ما. الرجاء المحاولة مرة اخرى.",
+  "phoneNotRegistered": "رقم الهاتف غير مسجل.",
+  "error": "حدث خطأ.",
+  "forgotPassword": "نسيان كلمة المرور",
+  "resetInstructions": "لا تقلق ، ما عليك سوى كتابة رقم هاتفك وسنرسل رمز التحقق.",
+  "sendVerificationCode": "إرسال رمز التحقق",
+  "verifyCode": "التحقق من الرمز",
+  "passwordResetSuccess": "تم إعادة تعيين كلمة المرور بنجاح!",
+  "enterCode": "أدخل الرمز الذي أرسلناه إلى رقم هاتفك",
+  "newPassword": "كلمة المرور الجديدة",
+  "resetPassword": "إعادة تعيين كلمة المرور",
+  "resendCode": "إعادة إرسال الرمز",
+  "or": "أو",
+  "newAccount": "حساب جديد",
+  "fullName": "الاسم الكامل",
+  "email": "البريد الإلكتروني",
+  "phone": "رقم الهاتف",
+  "agreeTerms": "يجب عليك الموافقة على الشروط والإحكام",
+  "createAccount": "إنشاء حساب جديد",
+  "alreadyHaveAccount": "تمتلك حساب بالفعل؟",
+  "login": "تسجيل دخول"
+}

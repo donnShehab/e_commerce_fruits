@@ -1,1 +1,26 @@
-{}
+{
+  "@@locale": "en",
+  "password": "Password",
+  "requiredField": "This field is required",
+  "errorOccurred": "An error occurred. Please try again.",
+  "phoneNotRegistered": "Phone number not registered.",
+  "error": "Error.",
+  "forgotPassword": "Forgot Password",
+  "resetInstructions": "Don't worry, just enter your phone number and we will send a verification code.",
+  "sendVerificationCode": "Send Verification Code",
+  "verifyCode": "Verify Code",
+  "passwordResetSuccess": "Password has been reset successfully!",
+  "enterCode": "Enter the code sent to your phone number",
+  "newPassword": "New Password",
+  "resetPassword": "Reset Password",
+  "resendCode": "Resend Code",
+  "or": "Or",
+  "newAccount": "New Account",
+  "fullName": "Full Name",
+  "email": "Email",
+  "phone": "Phone Number",
+  "agreeTerms": "You must agree to the terms and conditions",
+  "createAccount": "Create New Account",
+  "alreadyHaveAccount": "Already have an account?",
+  "login": "Login"
+}

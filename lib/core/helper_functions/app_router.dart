@@ -9,6 +9,7 @@ import 'package:e_coomerce_fruit/feature/checkout/presntation/views/checkout_vie
 import 'package:e_coomerce_fruit/feature/home/domain/entites/cart_entity.dart';
 import 'package:e_coomerce_fruit/feature/home/domain/entites/cart_item_entity.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/main_view.dart';
+import 'package:e_coomerce_fruit/feature/home/presntation/views/profile_view.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/reviews_view.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/search_view.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/about_us.dart';
@@ -38,7 +39,7 @@ abstract class AppRouter {
   static const kAboutUs = '/AboutUs';
   static const kProductViewDetails = '/ProductViewDetails';
   static const kReviewsView = '/ReviewsView';
-
+static const kProfileView = '/ProfileView';
   static final router = GoRouter(
     initialLocation: kSplashView,
     routes: [
@@ -102,6 +103,10 @@ abstract class AppRouter {
           return ReviewsView(productId: productId);
         },
       ),
+      GoRoute(
+        path: kProfileView,
+        builder: (context, state) => ProfileView(),
+      )
     ],
   );
 }

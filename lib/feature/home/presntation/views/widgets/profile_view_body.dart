@@ -71,6 +71,8 @@
 import 'package:e_coomerce_fruit/constants.dart';
 import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
 import 'package:e_coomerce_fruit/core/helper_functions/get_user.dart';
+import 'package:e_coomerce_fruit/core/providers/local_provider.dart';
+import 'package:e_coomerce_fruit/core/providers/theme_provider.dart';
 import 'package:e_coomerce_fruit/core/repos/images_repo/images_repo.dart';
 import 'package:e_coomerce_fruit/core/services/get_it_services.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
@@ -83,6 +85,7 @@ import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/custom_l
 import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/profile_image_picker.dart';
 import 'package:e_coomerce_fruit/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileViewBody extends StatefulWidget {
@@ -98,6 +101,8 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = context.watch<ThemeProvider>();
+
     return SingleChildScrollView(
       // Make scrollable for new content
       child: Padding(
@@ -108,7 +113,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
             buildAppBar(
               context,
               title: 'حسابي',
-              showBackButton: false,
+              showBackButton: true,
               showNotification: false,
             ),
             Row(
@@ -206,17 +211,53 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
               title: Text('اللغة', style: TextStyles.regular16),
               trailing: Text('العربية', style: TextStyles.regular13),
             ),
+//             ListTile(
+//               leading: Icon(Icons.language, color: AppColors.primaryColor),
+//               title: Text('اللغة', style: TextStyles.regular16),
+//               trailing:Text(
+//   context.watch<LocaleProvider>().locale.languageCode == "ar"
+//       ? "العربية"
+//       : "English",
+//   style: TextStyles.regular13,
+// ),
+//               onTap: () {
+//                 showModalBottomSheet(
+//                   context: context,
+//                   builder: (context) {
+//                     return Column(
+//                       mainAxisSize: MainAxisSize.min,
+//                       children: [
+//                         ListTile(
+//                           title: Text("العربية"),
+//                           onTap: () {
+//                             context.read<LocaleProvider>().changeLocale("ar");
+//                             Navigator.pop(context);
+//                           },
+//                         ),
+//                         ListTile(
+//                           title: Text("English"),
+//                           onTap: () {
+//                             context.read<LocaleProvider>().changeLocale("en");
+//                             Navigator.pop(context);
+//                           },
+//                         ),
+//                       ],
+//                     );
+//                   },
+//                 );
+//               },
+//             ),
+
             Divider(color: Colors.grey.shade300),
+
             ListTile(
               leading: Icon(Icons.brightness_6, color: AppColors.primaryColor),
               title: Text('الوضع', style: TextStyles.regular16),
               trailing: Switch(
-                value: isDarkMode,
+                value: themeProvider.isDark,
                 onChanged: (value) {
-                  setState(() {
-                    isDarkMode = value;
-                  });
-                  // Add logic to toggle theme (e.g., via provider)
+                  // هذا ينادي toggle ويخزن في الـ prefs
+                  themeProvider.toggleTheme(value);
                 },
                 activeColor: AppColors.primaryColor,
               ),
@@ -269,4 +310,3 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     );
   }
 }
-

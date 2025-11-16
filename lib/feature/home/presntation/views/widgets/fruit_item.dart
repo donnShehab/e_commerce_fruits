@@ -26,7 +26,9 @@ class FruitItem extends StatelessWidget {
             top: -1,
             right: -3,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                
+              },
               icon: Icon(Icons.favorite_outline),
             ),
           ),

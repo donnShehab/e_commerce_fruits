@@ -1,7 +1,7 @@
-
-
 import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
 import 'package:e_coomerce_fruit/core/services/get_it_services.dart';
+import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
+import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/signout_cubit/signout_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -24,7 +24,7 @@ class LogoutDialog extends StatelessWidget {
             children: [
               // Close Icon (top left)
               Align(
-                alignment: Alignment.topLeft,
+                alignment: Alignment.topRight,
 
                 child: GestureDetector(
                   onTap: () => Navigator.pop(context),
@@ -39,7 +39,7 @@ class LogoutDialog extends StatelessWidget {
               Text(
                 "هل ترغب في تسجيل الخروج؟",
 
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                style: TextStyles.bold16.copyWith(color: Color(0xff0C0D0D)),
               ),
 
               SizedBox(height: 25),
@@ -55,9 +55,14 @@ class LogoutDialog extends StatelessWidget {
                       },
 
                       style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 14),
+                        padding: EdgeInsets.only(
+                          top: 15,
+                          right: 8,
+                          bottom: 15,
+                          left: 8,
+                        ),
 
-                        side: BorderSide(color: Colors.green),
+                        side: BorderSide(color: AppColors.primaryColor),
 
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -67,7 +72,9 @@ class LogoutDialog extends StatelessWidget {
                       child: Text(
                         "لا أرغب",
 
-                        style: TextStyle(color: Colors.green, fontSize: 16),
+                        style: TextStyles.bold16.copyWith(
+                          color: AppColors.primaryColor,
+                        ),
                       ),
                     ),
                   ),
@@ -93,9 +100,14 @@ class LogoutDialog extends StatelessWidget {
                       },
 
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF266C49), // Dark green
+                        backgroundColor: AppColors.primaryColor, // Dark green
 
-                        padding: EdgeInsets.symmetric(vertical: 14),
+                        padding: EdgeInsets.only(
+                          top: 15,
+                          right: 8,
+                          bottom: 15,
+                          left: 8,
+                        ),
 
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -105,7 +117,9 @@ class LogoutDialog extends StatelessWidget {
                       child: Text(
                         "تأكيد",
 
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                        style: TextStyles.bold16.copyWith(
+                          color: Color(0xffFFFFFF),
+                        ),
                       ),
                     ),
                   ),
