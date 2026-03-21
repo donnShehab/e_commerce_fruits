@@ -2,6 +2,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesAlwadiLogo
+  /// assets/images/alwadi_logo.png
+  static const String imagesAlwadiLogo = "assets/images/alwadi_logo.png";
+
   /// Assets for imagesAppIcon
   /// assets/images/app_icon.jpg
   static const String imagesAppIcon = "assets/images/app_icon.jpg";
@@ -30,21 +34,11 @@ class Assets {
   /// assets/images/filter_product.svg
   static const String imagesFilterProduct = "assets/images/filter_product.svg";
 
-  /// Assets for imagesFrame 1171275855
-  /// assets/images/Frame 1171275855.png
-  static const String imagesFrame1171275855 = "assets/images/Frame 1171275855.png";
 
   /// Assets for imagesGoogleIcon
   /// assets/images/google_icon.svg
   static const String imagesGoogleIcon = "assets/images/google_icon.svg";
 
-  /// Assets for imagesGroup 36850
-  /// assets/images/Group 36850.png
-  static const String imagesGroup36850 = "assets/images/Group 36850.png";
-
-  /// Assets for imagesGroup 36850(4)
-  /// assets/images/Group 36850(4).png
-  static const String imagesGroup368500 = "assets/images/Group 36850(4).png";
 
   /// Assets for imagesIconTrue
   /// assets/images/icon_true.svg
@@ -64,11 +58,11 @@ class Assets {
 
   /// Assets for imagesOnBoarding 1
   /// assets/images/on_boarding 1.svg
-  static const String imagesOnBoardingOne = "assets/images/on_boarding 1.svg";
+  static const String imagesOnBoarding1 = "assets/images/on_boarding 1.svg";
 
   /// Assets for imagesOnBoarding 2
   /// assets/images/on_boarding 2.svg
-  static const String imagesOnBoardingTwo = "assets/images/on_boarding 2.svg";
+  static const String imagesOnBoarding2 = "assets/images/on_boarding 2.svg";
 
   /// Assets for imagesOnBoardingBackground1
   /// assets/images/on_boarding_background1.svg

@@ -22,7 +22,6 @@ class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthServices;
   // firestore services
   final DataBaseService dataBaseService;
-  // add print       print("✅ AuthRepoImpl initialized with dataBaseService: $dataBaseService");
 
   AuthRepoImpl({
     required this.firebaseAuthServices,
@@ -60,6 +59,7 @@ class AuthRepoImpl extends AuthRepo {
   //     );
   //   }
   // }
+
   // signup
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
@@ -133,6 +133,7 @@ class AuthRepoImpl extends AuthRepo {
     required String email,
     required String password,
   }) async {
+    
     try {
       var user = await firebaseAuthServices.signInWithEmailAndPassword(
         email: email,

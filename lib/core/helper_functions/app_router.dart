@@ -39,7 +39,7 @@ abstract class AppRouter {
   static const kAboutUs = '/AboutUs';
   static const kProductViewDetails = '/ProductViewDetails';
   static const kReviewsView = '/ReviewsView';
-static const kProfileView = '/ProfileView';
+  static const kProfileView = '/ProfileView';
   static final router = GoRouter(
     initialLocation: kSplashView,
     routes: [
@@ -103,10 +103,7 @@ static const kProfileView = '/ProfileView';
           return ReviewsView(productId: productId);
         },
       ),
-      GoRoute(
-        path: kProfileView,
-        builder: (context, state) => ProfileView(),
-      )
+      GoRoute(path: kProfileView, builder: (context, state) => ProfileView()),
     ],
   );
 }

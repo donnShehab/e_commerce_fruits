@@ -184,7 +184,7 @@ class _MainViewState extends State<MainView> {
       create: (context) => CartItemCubit(),
       child: Builder(
         builder: (context) {
-          final List<Widget> pages = [
+        final List<Widget> pages = [
             const HomeView(),
             const ProductsView(),
             const CartView(),
@@ -192,14 +192,19 @@ class _MainViewState extends State<MainView> {
           ];
 
           return Scaffold(
+            
             body: MainViewBodyBlocConsumer(
               selectedIndex: selectedIndex,
               pages: pages,
             ),
+
             bottomNavigationBar: CustomBottomNavigation(
+               
               selectedIndex: selectedIndex,
               onItemSelected: onTabSelected,
+
             ),
+            
           );
         },
       ),

@@ -179,12 +179,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             onPressed: incrementQuantity,
                           ),
                         ),
-                        // Text(
-                        //   '${widget.product.price} دينار / الكيلو', // e.g., "20 جنيه / الكيلو"
-                        //   style: TextStyles.bold16.copyWith(
-                        //     color: AppColors.primaryColor,
-                        //   ),
-                        // ),
+                      
                       ],
                     ),
                     SizedBox(height: 12),
@@ -220,25 +215,20 @@ class _ProductDetailViewState extends State<ProductDetailView> {
 
                             GestureDetector(
                               onTap: () {
-                                // add logic here mmm cubit, add navigate to reviews page
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ReviewsView(
+                                      productId: widget.product.id,
+                                    ),
+                                  ),
+                                );
                               },
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ReviewsView(
-                                        productId: widget.product.id,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Text.rich(
-                                  TextSpan(
-                                    text: 'المراجعة',
-                                    style: TextStyles.regular22.copyWith(
-                                      color: AppColors.primaryColor,
-                                    ),
+                              child: Text.rich(
+                                TextSpan(
+                                  text: 'المراجعة',
+                                  style: TextStyles.regular22.copyWith(
+                                    color: AppColors.primaryColor,
                                   ),
                                 ),
                               ),
@@ -322,7 +312,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           'الصلاحية',
                         ), // Expiry
                         _buildFeatureCard(
-                          Assets.imagesGroup368500,
+                          Assets.imagesGroup36850,
                           '80 كالوري',
                           '100 جرام',
                         ), // Calories

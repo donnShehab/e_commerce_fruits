@@ -4,10 +4,8 @@ import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
 import 'package:e_coomerce_fruit/core/services/shared_preferences_singleton.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_button.dart';
-import 'package:e_coomerce_fruit/feature/on_boarding/presntation/widgets/on_boarding_page_view.dart';
-
+import 'package:e_coomerce_fruit/feature/on_boarding/presntation/view/widgets/on_boarding_page_view.dart';
 import 'package:flutter/material.dart';
-
 import 'package:go_router/go_router.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
@@ -20,6 +18,7 @@ class OnBoardingViewBody extends StatefulWidget {
 class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
   late PageController pageController;
   var currentPage = 0;
+
   @override
   void initState() {
     pageController = PageController();
@@ -44,16 +43,14 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         Expanded(child: OnBoardingPageView(pageController: pageController)),
         DotsIndicator(
           dotsCount: 2,
-
           decorator: DotsDecorator(
             activeColor: AppColors.primaryColor,
-
             color: currentPage == 1
                 ? AppColors.primaryColor
                 : AppColors.primaryColor.withOpacity(0.5),
           ),
         ),
-        SizedBox(height: 29),
+        const SizedBox(height: 24),
         Padding(
           padding: const EdgeInsets.symmetric(
             vertical: kVerticalPadding,
@@ -63,18 +60,18 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             maintainState: true,
             maintainAnimation: true,
             maintainSize: true,
-            visible: currentPage == 1 ? true : false,
+            visible: currentPage == 1,
             child: CustomButton(
               onPressed: () {
                 GoRouter.of(context).push(AppRouter.kSigninView);
                 Prefs.setBool(kIsOnBoardingViewSeen, true);
               },
               color: AppColors.primaryColor,
-              text: 'ابدأ الان',
+              text: 'ابدأ الآن',
             ),
           ),
         ),
-        SizedBox(height: 43),
+        const SizedBox(height: 36),
       ],
     );
   }

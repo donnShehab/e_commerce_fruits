@@ -36,7 +36,12 @@ class _SigninViewBodyState extends State<SigninViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'التسجيل الدخول '),
+      appBar: buildAppBar(
+        context,
+        title: 'التسجيل الدخول ',
+        showNotification: false,
+        showBackButton: false,
+      ),
 
       body: SingleChildScrollView(
         child: Padding(
@@ -58,31 +63,26 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 SizedBox(height: 16),
 
                 CustomPasswordField(
-                  
                   onSaved: (value) {
                     password = value!;
                   },
                 ),
                 SizedBox(height: 16),
-                TextButton(
-                  onPressed: () {},
-
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          GoRouter.of(context).push(AppRouter.kForgetPassword);
-                        },
-                        child: Text(
-                          'نسيت كلمة المرور؟',
-                          style: TextStyles.semiBold13.copyWith(
-                            color: AppColors.lightPrimaryColor,
-                          ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).push(AppRouter.kForgetPassword);
+                      },
+                      child: Text(
+                        'نسيت كلمة المرور؟',
+                        style: TextStyles.semiBold13.copyWith(
+                          color: AppColors.lightPrimaryColor,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
 
                 SizedBox(height: 33),

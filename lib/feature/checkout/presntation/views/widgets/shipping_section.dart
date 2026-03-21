@@ -44,7 +44,9 @@ class _ShippingSectionState extends State<ShippingSection>
           },
           title: ' الدفع اونلاين',
           subTitle: ' يرجى تحديد طريقه الدفع ',
-          price: orderEntity.cartEntity.calculateTotalPrice().toString(),
+          price: (orderEntity.cartEntity.calculateTotalPrice()).toStringAsFixed(
+            2,
+          ),
           isSelected: selectedIndex == 1,
         ),
       ],

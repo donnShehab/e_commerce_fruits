@@ -32,7 +32,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: ' حساب جديد'),
+      appBar: buildAppBar(context, title: ' حساب جديد',showNotification: false),
 
       body: SingleChildScrollView(
         child: Padding(
@@ -95,6 +95,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                               phoneNumber,
                             );
                       } else {
+                        
                         showBar(
                           context,
                           'يجب عليك الموافقة على الشروط والإحكام',

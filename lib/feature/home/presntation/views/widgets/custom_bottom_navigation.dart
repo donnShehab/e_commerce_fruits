@@ -75,42 +75,45 @@ class CustomBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 70,
-      width: double.infinity,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-        ),
-        shadows: [
-          BoxShadow(
-            color: Color(0x19000000),
-            blurRadius: 25,
-            offset: Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: bottomNavigationBarItem.asMap().entries.map((entry) {
-          final index = entry.key;
-          final entity = entry.value;
-
-          return Expanded(
-            flex: index == selectedIndex ? 4 : 3,
-            child: GestureDetector(
-              onTap: () => onItemSelected(index),
-              child: NavigationBarItem(
-                isSelected: selectedIndex == index,
-                bottomNavigationBarEntity: entity,
-              ),
+    return SafeArea(
+      top: false,
+      child: Container(
+        height: 80,
+        width: double.infinity,
+        decoration: ShapeDecoration(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
             ),
-          );
-        }).toList(),
+          ),
+          shadows: [
+            BoxShadow(
+              color: Color(0x19000000),
+              blurRadius: 25,
+              offset: Offset(0, -2),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: bottomNavigationBarItem.asMap().entries.map((entry) {
+            final index = entry.key;
+            final entity = entry.value;
+      
+            return Expanded(
+              flex: index == selectedIndex ? 4 : 3, 
+              child: GestureDetector(
+                onTap: () => onItemSelected(index),
+                child: NavigationBarItem(
+                  isSelected: selectedIndex == index,
+                  bottomNavigationBarEntity: entity,
+                ),
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

@@ -65,7 +65,7 @@ class OrderSummryWidget extends StatelessWidget {
                   const Text('الكلي', style: TextStyles.bold16),
                   const Spacer(),
                   Text(
-                    '${(context.read<OrderInputEntity>().cartEntity.calculateTotalPrice() + 3)}  دنانير',
+                    '${(context.read<OrderInputEntity>().cartEntity.calculateTotalPrice() + 3).toStringAsFixed(2)}  دنانير',
                     style: TextStyles.bold16,
                   ),
                 ],

@@ -11,6 +11,7 @@ dependencies:
   animate_do: ^3.3.4
   cached_network_image: ^3.4.1
   cloud_firestore: ^6.0.1
+  connectivity_plus: ^7.0.0
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   dots_indicator: ^4.0.1
@@ -56,7 +57,7 @@ flutter:
     - assets/images/vuesax/otline/
 
   fonts:
-    - family: Cairo
+    - family: Cario
       fonts:
         - asset: assets/fonts/Cairo-Regular.ttf
         - asset: assets/fonts/Cairo-Medium.ttf
@@ -74,7 +75,7 @@ flutter_launcher_icons:
 
 flutter_assets:
   assets_path: assets/images/
-  output_path: lib/utils
+  output_path: lib/core/utils/
   filename: app_images.dart
   field_prefix: null
 
