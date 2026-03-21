@@ -32,7 +32,7 @@ class PageViewItem extends StatelessWidget {
           child: Stack(
             children: [
               Positioned.fill(
-                child: Image.asset(backgroundImage, fit: BoxFit.fill),
+                child: Image.asset(backgroundImage, fit: BoxFit.cover),
               ),
               Positioned(
                 bottom: 7,
