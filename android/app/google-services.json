@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:649071935690:android:3944699e59d53632747433",
+        "android_client_info": {
+          "package_name": "com.example.fruit_dashboard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC85ZRA8acN6iV7QEw0r23ZOG8gq9mvtwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:649071935690:android:26136ff295dfdb23747433",
         "android_client_info": {
           "package_name": "com.example.fruit_hub"

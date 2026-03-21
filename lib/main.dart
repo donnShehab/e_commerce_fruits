@@ -8,18 +8,15 @@ import 'package:fruit_hub/core/services/get_it_services.dart';
 import 'package:fruit_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruit_hub/firebase_options.dart';
 import 'package:fruit_hub/generated/l10n.dart';
-import 'package:fruit_hub/utils/app_colors.dart';
-
+import 'package:fruit_hub/core/utils/app_colors.dart';
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = CustomBlocObserver();
   await Prefs.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-    setupGetIt();
-
-
+  setupGetIt();
 
   runApp(const FruitsHub());
 }

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fruit_hub/constants.dart';
 import 'package:fruit_hub/core/helper_functions/app_router.dart';
-import 'package:fruit_hub/feature/auth/presntation/widgwts/clickable_text_span.dart';
-import 'package:fruit_hub/utils/app_colors.dart';
-import 'package:fruit_hub/utils/app_text_styles.dart';
-import 'package:fruit_hub/widgets/custom_app_bar.dart';
-import 'package:fruit_hub/widgets/custom_button.dart';
+import 'package:fruit_hub/feature/auth/presntation/views/widgwts/clickable_text_span.dart';
+import 'package:fruit_hub/core/utils/app_colors.dart';
+import 'package:fruit_hub/core/utils/app_text_styles.dart';
+import 'package:fruit_hub/core/widgets/custom_app_bar.dart';
+import 'package:fruit_hub/core/widgets/custom_button.dart';
 
 import 'package:go_router/go_router.dart';
 

@@ -42,6 +42,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.2.0
+  flutter_svg_provider: ^1.0.7
   font_awesome_flutter: ^10.9.0
   get_it: ^8.2.0
   go_router: ^16.1.0
@@ -75,6 +76,8 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/vuesax/bold/
+    - assets/images/vuesax/otline/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

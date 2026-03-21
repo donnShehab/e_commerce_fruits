@@ -1,7 +1,7 @@
-import 'package:fruit_hub/feature/auth/presntation/views/adding_product_view.dart';
+import 'package:fruit_hub/feature/best_selling_fruit/presntation/view/best_selling_fruit_view.dart';
+import 'package:fruit_hub/feature/home/presntation/views/widgets/best_selling_grid_view.dart';
 import 'package:fruit_hub/feature/auth/presntation/views/forget_password_view.dart';
-import 'package:fruit_hub/feature/auth/presntation/widgwts/home_view_body.dart';
-import 'package:fruit_hub/feature/auth/presntation/views/more_product_view.dart';
+import 'package:fruit_hub/feature/home/presntation/views/home_view.dart';
 import 'package:fruit_hub/feature/auth/presntation/views/otp_password_view.dart';
 import 'package:fruit_hub/feature/auth/presntation/views/sigin_view.dart';
 import 'package:fruit_hub/feature/auth/presntation/views/signup_view.dart';
@@ -16,9 +16,11 @@ abstract class AppRouter {
   static const kSignupView = '/SignupView';
   static const kForgetPassword = '/ForgetPassword';
   static const kOtpPassword = '/OtpPassword';
-  static const kHome = '/Home';
+  static const kHomeView = '/HomeView';
   static const kAddingProductView = '/AddingProductView';
   static const kMoreProductView = '/MoreProductView';
+  static const kBestSellingGridView = '/BestSellingGridView';
+  static const kBestSellingFruitView = '/BestSellingFruitView';
   static final router = GoRouter(
     initialLocation: kSplashView,
     routes: [
@@ -34,14 +36,23 @@ abstract class AppRouter {
         path: kOtpPassword,
         builder: (context, state) => OtpPasswordView(),
       ),
-      GoRoute(path: kHome, builder: (context, state) => HomeView()),
+      GoRoute(path: kHomeView, builder: (context, state) => HomeView()),
+      // GoRoute(
+      //   path: kAddingProductView,
+      //   builder: (context, state) => AddingProductView(),
+      // ),
+
+      // GoRoute(
+      //   path: kMoreProductView,
+      //   builder: (context, state) => MoreProductView(),
+      // ),
       GoRoute(
-        path: kAddingProductView,
-        builder: (context, state) => AddingProductView(),
+        path: kBestSellingGridView,
+        builder: (context, state) => BestSellingGridView(),
       ),
       GoRoute(
-        path: kMoreProductView,
-        builder: (context, state) => MoreProductView(),
+        path: kBestSellingFruitView,
+        builder: (context, state) => BestSellingFruitView(),
       ),
     ],
   );

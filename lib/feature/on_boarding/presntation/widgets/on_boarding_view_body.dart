@@ -5,8 +5,8 @@ import 'package:fruit_hub/constants.dart';
 import 'package:fruit_hub/core/helper_functions/app_router.dart';
 import 'package:fruit_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruit_hub/feature/on_boarding/presntation/widgets/on_boarding_page_view.dart';
-import 'package:fruit_hub/utils/app_colors.dart';
-import 'package:fruit_hub/widgets/custom_button.dart';
+import 'package:fruit_hub/core/utils/app_colors.dart';
+import 'package:fruit_hub/core/widgets/custom_button.dart';
 
 import 'package:go_router/go_router.dart';
 

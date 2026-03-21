@@ -173,4 +173,7 @@ class FirebaseAuthService {
 //       codeAutoRetrievalTimeout: (String verificationId) {},
 //     );
 //   }
+bool isLoggedIn() {
+  return  FirebaseAuth.instance.currentUser != null;
+}
 }

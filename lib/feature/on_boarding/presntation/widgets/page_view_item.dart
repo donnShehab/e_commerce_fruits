@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruit_hub/constants.dart';
 import 'package:fruit_hub/core/helper_functions/app_router.dart';
 import 'package:fruit_hub/core/services/shared_preferences_singleton.dart';
-import 'package:fruit_hub/utils/app_text_styles.dart';
+import 'package:fruit_hub/core/utils/app_text_styles.dart';
 
 import 'package:go_router/go_router.dart';
 

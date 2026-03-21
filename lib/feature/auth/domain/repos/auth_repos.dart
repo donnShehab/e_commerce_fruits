@@ -20,6 +20,8 @@ abstract class AuthRepo {
   Future<Either<Failure, UserEntity>> signInWithFacebook();
   // add user data to firestore
   Future addUserData({required UserEntity user});
+  // save user data to shared preferences
+  Future saveUserData({required UserEntity user});
   // get user data from firestore
   Future<UserEntity> getUserData({required String uid});
 }
