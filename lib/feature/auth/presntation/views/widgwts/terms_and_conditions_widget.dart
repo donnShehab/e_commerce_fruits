@@ -1,69 +1,85 @@
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
-import 'package:e_coomerce_fruit/feature/auth/presntation/views/widgwts/custom_check_box.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class TermsAndConditionsWidget extends StatefulWidget {
   const TermsAndConditionsWidget({super.key, required this.onChanged});
-  // هذا الكود ينشئ ويدجت يحتوي على مربع اختيار للشروط والأحكام
 
-  final ValueChanged<bool>
-  onChanged; // هذا المتغير يستخدم لنقل حالة مربع الاختيار
+  final ValueChanged<bool> onChanged;
+
   @override
   State<TermsAndConditionsWidget> createState() =>
       _TermsAndConditionsWidgetState();
 }
 
 class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
-  bool isTermsAccepted = false;
-  // هذا المتغير يستخدم لتخزين حالة قبول الشروط والأحكام
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: Offset(2, 0),
-      child: Row(
-        children: [
-          CustomCheckBox(
-            // هذا الويدجت يمثل مربع اختيار
-            onChecked: (value) {
-              isTermsAccepted = value;
-
-              widget.onChanged(value);
-
-              setState(() {});
-            },
-            isChecked: isTermsAccepted,
-          ),
-          SizedBox(width: 16),
-          // SizedBox(
-          //   width:
-          //       MediaQuery.sizeOf(context).width -
-          //       (kHorizintalPadding * 4) -
-          //       50,
-          Expanded(
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: ' من خلال إنشاء حساب ، فإنك توافق على',
-                    style: TextStyles.semiBold13.copyWith(
-                      color: Color(0xff949D9E),
-                    ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Text.rich(
+            textAlign: TextAlign.start,
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: 'من خلال إنشاء حساب، فإنك توافق على ',
+                  style: TextStyles.semiBold13.copyWith(
+                    color: const Color(0xFF8E9596),
+                    height: 1.7,
                   ),
-
-                  TextSpan(
-                    text: ' الشروط والأحكام الخاصة بنا',
-                    style: TextStyles.semiBold13.copyWith(
-                      color: AppColors.lightPrimaryColor,
-                    ),
+                ),
+                TextSpan(
+                  text: 'الشروط والأحكام',
+                  style: TextStyles.semiBold13.copyWith(
+                    color: AppColors.primaryColor,
+                    height: 1.7,
                   ),
-                ],
-              ),
+                  recognizer: TapGestureRecognizer()..onTap = () {},
+                ),
+                TextSpan(
+                  text: ' الخاصة بنا',
+                  style: TextStyles.semiBold13.copyWith(
+                    color: const Color(0xFF8E9596),
+                    height: 1.7,
+                  ),
+                ),
+              ],
             ),
           ),
-          // ),
-        ],
-      ),
+        ),
+        const SizedBox(width: 12),
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              isChecked = !isChecked;
+            });
+            widget.onChanged(isChecked);
+          },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 180),
+            margin: const EdgeInsets.only(top: 2),
+            width: 24,
+            height: 24,
+            decoration: BoxDecoration(
+              color: isChecked ? AppColors.primaryColor : Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: isChecked
+                    ? AppColors.primaryColor
+                    : const Color(0xFFD7DBDC),
+              ),
+            ),
+            child: isChecked
+                ? const Icon(Icons.check_rounded, size: 18, color: Colors.white)
+                : null,
+          ),
+        ),
+      ],
     );
   }
 }

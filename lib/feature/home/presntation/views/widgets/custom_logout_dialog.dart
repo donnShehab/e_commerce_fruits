@@ -1,132 +1,138 @@
 import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
-import 'package:e_coomerce_fruit/core/services/get_it_services.dart';
-import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
-import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
-import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/signout_cubit/signout_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class LogoutDialog extends StatelessWidget {
+  const LogoutDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl, // RTL support
+    const primaryColor = Color(0xFFF57C00);
+    const bgColor = Color(0xFFFFFCF8);
+    const darkText = Color(0xFF2F3637);
+    const bodyText = Color(0xFF7A7F80);
+    const borderColor = Color(0xFFF3D9BE);
 
-      child: Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-
-            children: [
-              // Close Icon (top left)
-              Align(
-                alignment: Alignment.topRight,
-
-                child: GestureDetector(
-                  onTap: () => Navigator.pop(context),
-
-                  child: Icon(Icons.close, size: 24),
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 18),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.10),
+              blurRadius: 24,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: () => Navigator.pop(context),
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  child: const Icon(
+                    Icons.close_rounded,
+                    size: 22,
+                    color: Color(0xFF555555),
+                  ),
                 ),
               ),
+            ),
 
-              SizedBox(height: 10),
-
-              // Question
-              Text(
-                "هل ترغب في تسجيل الخروج؟",
-
-                style: TextStyles.bold16.copyWith(color: Color(0xff0C0D0D)),
+            Container(
+              width: 64,
+              height: 64,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF3E6),
+                shape: BoxShape.circle,
               ),
+              child: const Icon(
+                Icons.logout_rounded,
+                color: primaryColor,
+                size: 30,
+              ),
+            ),
 
-              SizedBox(height: 25),
+            const SizedBox(height: 16),
 
-              // Buttons Row
-              Row(
-                children: [
-                  // Cancel Button
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+            const Text(
+              'هل تريد تسجيل الخروج؟',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+                color: darkText,
+              ),
+            ),
 
-                      style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.only(
-                          top: 15,
-                          right: 8,
-                          bottom: 15,
-                          left: 8,
-                        ),
+            const SizedBox(height: 8),
 
-                        side: BorderSide(color: AppColors.primaryColor),
+            const Text(
+              'يمكنك تسجيل الدخول مرة أخرى في أي وقت.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14, height: 1.7, color: bodyText),
+            ),
 
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
+            const SizedBox(height: 22),
+
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => Navigator.pop(context),
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: borderColor),
+                      foregroundColor: primaryColor,
+                      minimumSize: const Size.fromHeight(52),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
                       ),
-
-                      child: Text(
-                        "لا أرغب",
-
-                        style: TextStyles.bold16.copyWith(
-                          color: AppColors.primaryColor,
-                        ),
+                    ),
+                    child: const Text(
+                      'إلغاء',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-
-                  SizedBox(width: 15),
-
-                  // Confirm Button
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        Navigator.pop(context); // Close dialog
-
-                        await getIt<SignoutCubitCubit>()
-                            .logout(); // Your logout logic
-
-                        GoRouter.of(
-                          context,
-                        ).go(AppRouter.kSigninView); // Navigate to signin
-
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('تم تسجيل الخروج')),
-                        );
-                      },
-
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primaryColor, // Dark green
-
-                        padding: EdgeInsets.only(
-                          top: 15,
-                          right: 8,
-                          bottom: 15,
-                          left: 8,
-                        ),
-
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      GoRouter.of(context).go(AppRouter.kSigninView);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      minimumSize: const Size.fromHeight(52),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
                       ),
-
-                      child: Text(
-                        "تأكيد",
-
-                        style: TextStyles.bold16.copyWith(
-                          color: Color(0xffFFFFFF),
-                        ),
+                    ),
+                    child: const Text(
+                      'تسجيل الخروج',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

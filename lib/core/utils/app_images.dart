@@ -2,6 +2,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesAlwadFeaturedItemOne
+  /// assets/images/Alwad_featured_item_one.png
+  static const String imagesAlwadFeaturedItemOne = "assets/images/Alwad_featured_item_one.png";
+
   /// Assets for imagesAlwadiLogo
   /// assets/images/alwadi_logo.png
   static const String imagesAlwadiLogo = "assets/images/alwadi_logo.png";
@@ -13,6 +17,26 @@ class Assets {
   /// Assets for imagesApplIcon
   /// assets/images/appl_icon.svg
   static const String imagesApplIcon = "assets/images/appl_icon.svg";
+
+  /// Assets for imagesBurgerAlwadiGO
+  /// assets/images/Burger_Alwadi_GO.jpg
+  static const String imagesBurgerAlwadiGO = "assets/images/Burger_Alwadi_GO.jpg";
+
+  /// Assets for imagesBurgerAlwadiGO1
+  /// assets/images/Burger_Alwadi_GO-1.png
+  static const String imagesBurgerAlwadiGO1 = "assets/images/Burger_Alwadi_GO-1.png";
+
+  /// Assets for imagesBurgerAlwadiGO2
+  /// assets/images/Burger_Alwadi_GO-2.png
+  static const String imagesBurgerAlwadiGO2 = "assets/images/Burger_Alwadi_GO-2.png";
+
+  /// Assets for imagesBurgerAlwadiGOTwo
+  /// assets/images/Burger_Alwadi_GO_Two.jpg
+  static const String imagesBurgerAlwadiGOTwo = "assets/images/Burger_Alwadi_GO_Two.jpg";
+
+  /// Assets for imagesBurgerAlwadiGOTwo2
+  /// assets/images/Burger_Alwadi_GO_Two2.jpg
+  static const String imagesBurgerAlwadiGOTwo2 = "assets/images/Burger_Alwadi_GO_Two2.jpg";
 
   /// Assets for imagesCalendar
   /// assets/images/calendar.png
@@ -100,6 +124,14 @@ class Assets {
   /// Assets for imagesPlanet
   /// assets/images/planet.svg
   static const String imagesPlanet = "assets/images/planet.svg";
+
+  /// Assets for imagesProfileAlwadi
+  /// assets/images/profile_alwadi.png
+  static const String imagesProfileAlwadi = "assets/images/profile_alwadi.png";
+
+  /// Assets for imagesProfileAlwadi2
+  /// assets/images/profile_alwadi_2.png
+  static const String imagesProfileAlwadi2 = "assets/images/profile_alwadi_2.png";
 
   /// Assets for imagesProfileImage
   /// assets/images/profileImage.png

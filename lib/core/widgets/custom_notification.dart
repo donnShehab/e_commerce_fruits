@@ -9,7 +9,7 @@ class CustomNofitication extends StatelessWidget {
       width: 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(40),
-        color: Color(0xffEEF8ED),
+        color: Colors.orange[50],
       ),
       child: Center(
         child: Stack(

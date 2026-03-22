@@ -17,7 +17,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:go_router/go_router.dart';
 
 class SigninViewBody extends StatefulWidget {
@@ -38,54 +37,59 @@ class _SigninViewBodyState extends State<SigninViewBody> {
     return Scaffold(
       appBar: buildAppBar(
         context,
-        title: 'التسجيل الدخول ',
+        title: 'تسجيل الدخول',
         showNotification: false,
         showBackButton: false,
       ),
-
-      body: SingleChildScrollView(
-        child: Padding(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
           child: Form(
             key: formKey,
             autovalidateMode: autovalidateMode,
             child: Column(
               children: [
-                SizedBox(height: 24),
+                Image.asset(
+                  Assets.imagesAlwadiLogo,
+                  width: 200,
+                  fit: BoxFit.contain,
+                ),
 
                 CustomTextFormField(
                   onSaved: (value) {
                     email = value!;
                   },
-                  hintText: 'البريد الالكتروني',
+                  hintText: 'البريد الإلكتروني',
                   textInputType: TextInputType.emailAddress,
                 ),
-                SizedBox(height: 16),
+
+                const SizedBox(height: 12),
 
                 CustomPasswordField(
                   onSaved: (value) {
                     password = value!;
                   },
                 ),
-                SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        GoRouter.of(context).push(AppRouter.kForgetPassword);
-                      },
-                      child: Text(
-                        'نسيت كلمة المرور؟',
-                        style: TextStyles.semiBold13.copyWith(
-                          color: AppColors.lightPrimaryColor,
-                        ),
+
+                const SizedBox(height: 12),
+
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.kForgetPassword);
+                    },
+                    child: Text(
+                      'نسيت كلمة المرور؟',
+                      style: TextStyles.semiBold13.copyWith(
+                        color: AppColors.lightPrimaryColor,
                       ),
                     ),
-                  ],
+                  ),
                 ),
 
-                SizedBox(height: 33),
+                const SizedBox(height: 16),
+
                 CustomButton(
                   text: 'تسجيل دخول',
                   onPressed: () {
@@ -96,19 +100,25 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   },
                   color: AppColors.primaryColor,
                 ),
-                SizedBox(height: 33),
 
-                ClickableTextSpan(
-                  gestureRecognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      GoRouter.of(context).push(AppRouter.kSignupView);
-                    },
-                  text1: 'لا تمتلك حساب ؟',
-                  text2: 'قم بإنشاء حساب',
+                const SizedBox(height: 24),
+
+                Center(
+                  child: ClickableTextSpan(
+                    gestureRecognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        GoRouter.of(context).push(AppRouter.kSignupView);
+                      },
+                    text1: 'لا تمتلك حساب؟ ',
+                    text2: 'قم بإنشاء حساب',
+                  ),
                 ),
-                SizedBox(height: 33),
-                OrDivider(),
-                SizedBox(height: 16),
+
+                const SizedBox(height: 24),
+
+                const OrDivider(),
+
+                const SizedBox(height: 18),
 
                 CustomButtonSocialMediaa(
                   onPressed: () {
@@ -117,7 +127,9 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   title: 'تسجيل بواسطة جوجل',
                   imageSocial: SvgPicture.asset(Assets.imagesGoogleIcon),
                 ),
-                SizedBox(height: 12),
+
+                const SizedBox(height: 12),
+
                 Platform.isIOS
                     ? Column(
                         children: [
@@ -127,10 +139,10 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                               Assets.imagesApplIcon,
                             ),
                           ),
+                          const SizedBox(height: 12),
                         ],
                       )
-                    : SizedBox(),
-                SizedBox(height: 12),
+                    : const SizedBox(),
 
                 CustomButtonSocialMediaa(
                   onPressed: () {
@@ -139,6 +151,8 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   title: 'تسجيل بواسطة فيسبوك',
                   imageSocial: SvgPicture.asset(Assets.imagesFacebookIcon),
                 ),
+
+                const SizedBox(height: 24),
               ],
             ),
           ),

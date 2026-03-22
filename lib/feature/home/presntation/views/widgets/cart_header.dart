@@ -7,20 +7,28 @@ class CartHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final count = context.watch<CartCubit>().cartEntity.cartItems.length;
+
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(color: Color(0xFFEBF9F1)),
-      child: Center(
-        child: Text(
-          'لديك ${context.watch<CartCubit>().cartEntity.cartItems.length} منتجات في سله التسوق',
-          style: const TextStyle(
-            color: Color(0xFF1B5E37),
-            fontSize: 13,
-            fontFamily: 'Cairo',
-            fontWeight: FontWeight.w400,
-            height: 0.12,
-          ),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF6EE),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: const Color(0xFFF1E5D8),
+          width: 1,
+        ),
+      ),
+      child: Text(
+        'لديك $count منتجات في سلة التسوق',
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Color(0xFF9A6B3D),
+          fontSize: 13,
+          fontFamily: 'Cairo',
+          fontWeight: FontWeight.w600,
         ),
       ),
     );

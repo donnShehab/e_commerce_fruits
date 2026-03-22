@@ -6,6 +6,7 @@ import 'package:e_coomerce_fruit/feature/auth/presntation/views/sigin_view.dart'
 import 'package:e_coomerce_fruit/feature/auth/presntation/views/signup_view.dart';
 import 'package:e_coomerce_fruit/feature/best_selling_fruit/presntation/view/best_selling_fruit_view.dart';
 import 'package:e_coomerce_fruit/feature/checkout/presntation/views/checkout_view.dart';
+import 'package:e_coomerce_fruit/feature/checkout/presntation/views/widgets/paypal_checkout_view_success.dart';
 import 'package:e_coomerce_fruit/feature/home/domain/entites/cart_entity.dart';
 import 'package:e_coomerce_fruit/feature/home/domain/entites/cart_item_entity.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/main_view.dart';
@@ -40,6 +41,7 @@ abstract class AppRouter {
   static const kProductViewDetails = '/ProductViewDetails';
   static const kReviewsView = '/ReviewsView';
   static const kProfileView = '/ProfileView';
+  static const kPaypalCheckoutSuccessView = '/PaypalCheckoutSuccessView';
   static final router = GoRouter(
     initialLocation: kSplashView,
     routes: [
@@ -104,6 +106,7 @@ abstract class AppRouter {
         },
       ),
       GoRoute(path: kProfileView, builder: (context, state) => ProfileView()),
+      GoRoute(path: kPaypalCheckoutSuccessView, builder: (context, state) => PaypalCheckoutViewSuccess()),
     ],
   );
 }

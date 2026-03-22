@@ -1,48 +1,6 @@
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
-
-// class CustomButtonSocialMedia extends StatelessWidget {
-//   const CustomButtonSocialMedia({
-//     super.key,
-//     required this.image,
-//     required this.title,
-//     required this.onPressed,
-//   });
-
-//   final String image;
-//   final String title;
-//   final VoidCallback onPressed;
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       width: double.infinity,
-//       height: 56,
-//       child: TextButton(
-//         style: TextButton.styleFrom(
-//           shape: RoundedRectangleBorder(
-//             side: const BorderSide(color: Color(0xFFDCDEDE), width: 1),
-//             borderRadius: BorderRadius.circular(16),
-//           ),
-//         ),
-//         onPressed: onPressed,
-//         child: ListTile(
-//           visualDensity: const VisualDensity(
-//             vertical: VisualDensity.minimumDensity,
-//           ),
-//           leading: SvgPicture.asset(image),
-//           title: Text(
-//             title,
-//             textAlign: TextAlign.center,
-//             style: TextStyles.semiBold16,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class CustomButtonSocialMediaa extends StatelessWidget {
   const CustomButtonSocialMediaa({
@@ -51,35 +9,38 @@ class CustomButtonSocialMediaa extends StatelessWidget {
     required this.title,
     this.onPressed,
   });
+
   final SvgPicture imageSocial;
   final String title;
   final Function()? onPressed;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 54,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Color(0xffDDDFDF), width: 1),
-      ),
+    return SizedBox(
+      height: 58,
+      width: double.infinity,
       child: TextButton(
         onPressed: onPressed,
-        //  style: TextButton.styleFrom(
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.circular(16),
-        //   ),
-        // ),
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+            side: const BorderSide(color: Color(0xFFE1E4E6), width: 1),
+          ),
+        ),
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: imageSocial,
-            ),
-            SizedBox(width: 60),
+            imageSocial,
+            const Spacer(),
             Text(
               title,
-              style: TextStyles.semiBold16.copyWith(color: Colors.black),
+              style: TextStyles.semiBold16.copyWith(
+                color: const Color(0xFF1A1A1A),
+              ),
             ),
+            const Spacer(),
+            const SizedBox(width: 24),
           ],
         ),
       ),

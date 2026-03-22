@@ -1,4 +1,5 @@
 import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
+import 'package:e_coomerce_fruit/core/helper_functions/showSuccessSnackBar.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_progress_hud.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/signin_cubits/signin_cubit.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/views/widgwts/sigin_view_body.dart';
@@ -19,9 +20,10 @@ class SigninViewBlocConsumer extends StatelessWidget {
           GoRouter.of(context).push(AppRouter.kHomeView);
         }
         if (state is SigninFailure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.failure)));
+         showSuccessSnackBar(context, state.failure);
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   SnackBar(content: Text(state.message)),
+          // );
         }
       },
       builder: (context, state) {

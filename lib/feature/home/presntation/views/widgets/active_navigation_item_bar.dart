@@ -1,7 +1,7 @@
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart' show SvgPicture;
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ActiveNavigationItemBar extends StatelessWidget {
   const ActiveNavigationItemBar({
@@ -12,40 +12,54 @@ class ActiveNavigationItemBar extends StatelessWidget {
 
   final String name;
   final String image;
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        padding: const EdgeInsets.only(left: 7),
-        decoration: ShapeDecoration(
-          color: const Color(0xFFEEEEEE),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 30,
-              height: 30,
-              decoration: ShapeDecoration(
-                color: const Color(0xFF1B5E37),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 220),
+      curve: Curves.easeOut,
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFE8D2),
+        borderRadius: BorderRadius.circular(28),
+        border: Border.all(color: const Color(0xFFE7C39E), width: 1),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: SvgPicture.asset(
+                image,
+                width: 18,
+                height: 18,
+                colorFilter: const ColorFilter.mode(
+                  Colors.white,
+                  BlendMode.srcIn,
                 ),
               ),
-              child: Center(child: SvgPicture.asset(image)),
             ),
-            const SizedBox(width: 4),
-            Text(
+          ),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
               name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyles.semiBold11.copyWith(
-                color: AppColors.primaryColor,
+                color: const Color(0xFFE07A12),
               ),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(width: 2),
+        ],
       ),
     );
   }

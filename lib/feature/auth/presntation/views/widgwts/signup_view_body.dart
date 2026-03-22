@@ -12,7 +12,6 @@ import 'package:e_coomerce_fruit/feature/auth/presntation/views/widgwts/terms_an
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:go_router/go_router.dart';
 
 class SignupViewBody extends StatefulWidget {
@@ -32,26 +31,27 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: ' حساب جديد',showNotification: false),
-
-      body: SingleChildScrollView(
-        child: Padding(
+      appBar: buildAppBar(context, title: 'حساب جديد', showNotification: false),
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
           child: Form(
             key: fromKey,
             autovalidateMode: autovalidateMode,
             child: Column(
               children: [
-                SizedBox(height: 24),
+                const SizedBox(height: 14),
+
                 CustomTextFormField(
                   onSaved: (value) {
                     userName = value!;
                   },
-                  hintText: 'الاسم الكامل ',
-
+                  hintText: 'الاسم الكامل',
                   textInputType: TextInputType.text,
                 ),
-                SizedBox(height: 16),
+
+                const SizedBox(height: 16),
+
                 CustomTextFormField(
                   onSaved: (value) {
                     email = value!;
@@ -59,27 +59,36 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   hintText: 'البريد الإلكتروني',
                   textInputType: TextInputType.emailAddress,
                 ),
-                SizedBox(height: 16),
+
+                const SizedBox(height: 16),
+
                 CustomPasswordField(
                   onSaved: (value) {
                     password = value!;
                   },
                 ),
-                SizedBox(height: 16),
+
+                const SizedBox(height: 16),
+
                 CustomTextFormField(
                   onSaved: (value) {
                     phoneNumber = formatPhoneForFirebase(value!);
                   },
                   hintText: 'رقم الهاتف',
                   textInputType: TextInputType.phone,
+                  textDirection: TextDirection.ltr,
                 ),
-                SizedBox(height: 16),
+
+                const SizedBox(height: 18),
+
                 TermsAndConditionsWidget(
                   onChanged: (value) {
                     isTermsAccepted = value;
                   },
                 ),
-                SizedBox(height: 30),
+
+                const SizedBox(height: 28),
+
                 CustomButton(
                   color: AppColors.primaryColor,
                   onPressed: () {
@@ -95,10 +104,9 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                               phoneNumber,
                             );
                       } else {
-                        
                         showBar(
                           context,
-                          'يجب عليك الموافقة على الشروط والإحكام',
+                          'يجب عليك الموافقة على الشروط والأحكام',
                         );
                       }
                     } else {
@@ -110,18 +118,20 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   text: 'إنشاء حساب جديد',
                 ),
 
-                SizedBox(height: 26),
-                Align(
-                  alignment: Alignment.center,
+                const SizedBox(height: 28),
+
+                Center(
                   child: ClickableTextSpan(
                     gestureRecognizer: TapGestureRecognizer()
                       ..onTap = () {
                         GoRouter.of(context).pop();
                       },
-                    text1: 'تمتلك حساب بالفعل؟',
+                    text1: 'لديك حساب بالفعل؟ ',
                     text2: 'تسجيل دخول',
                   ),
                 ),
+
+                const SizedBox(height: 20),
               ],
             ),
           ),

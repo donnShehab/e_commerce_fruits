@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_coomerce_fruit/core/entities/product_entity.dart';
+import 'package:e_coomerce_fruit/core/helper_functions/showSuccessSnackBar.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/utils/app_images.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
@@ -18,14 +19,12 @@ class ProductDetailView extends StatefulWidget {
 }
 
 class _ProductDetailViewState extends State<ProductDetailView> {
-  int quantity = 1; // Default as per example
+  int quantity = 1;
 
   void incrementQuantity() {
     setState(() {
       quantity++;
     });
-    // add logic here mmm cubit, add quantity update if needed
-    // context.read<CartCubit>().updateQuantity(widget.product, quantity);
   }
 
   void decrementQuantity() {
@@ -34,360 +33,358 @@ class _ProductDetailViewState extends State<ProductDetailView> {
         quantity--;
       });
     }
-    // add logic here mmm cubit, add quantity update if needed
-    // context.read<CartCubit>().updateQuantity(widget.product, quantity);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          // Forward arrow on right (RTL navigation)
-          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black),
-          onPressed: () {
-            Navigator.of(context).pop();
-            // add logic here mmm cubit, add image carousel navigation
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.share, color: Colors.black),
-            onPressed: () {
-              // add logic here mmm cubit, add share functionality
-            },
-          ),
-        ],
-      ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 500,
-                child: Stack(
-                  children: [
-                    // Image with CachedNetworkImage for professional loading
-                    Positioned.fill(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(30),
-
-                          bottomRight: Radius.circular(30),
-                        ),
-
-                        child: CachedNetworkImage(
-                          imageUrl:
-                              widget.product.imageUrl ??
-                              'https://via.placeholder.com/400x400?text=Watermelon', // Fallback URL
-
-                          placeholder: (context, url) => Center(
-                            child: CircularProgressIndicator(
-                              color: AppColors.primaryColor,
-                            ),
-                          ),
-
-                          errorWidget: (context, url, error) => Center(
-                            child: Icon(
-                              Icons.image_not_supported,
-                              size: 50,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // Subtle Gradient Overlay for Depth
-                    Positioned.fill(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-
-                            end: Alignment.bottomCenter,
-
-                            colors: [
-                              Colors.transparent,
-                              Colors.black.withOpacity(0.1),
-                            ],
-                          ),
-
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(30),
-
-                            bottomRight: Radius.circular(30),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
+        bottom: false,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Product Name and Price
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            widget.product.name, // e.g., "بطيخ"
-                            style: TextStyles.bold28.copyWith(
-                              color: Colors.black,
-                            ),
-                            textAlign: TextAlign.right,
-                          ),
-                        ),
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.remove,
-                              color: AppColors.primaryColor,
-                            ),
-                            onPressed: decrementQuantity,
-                          ),
-                        ),
-                        SizedBox(width: 20),
-                        Text(
-                          quantity.toString(), // e.g., "4"
-                          style: TextStyles.bold19,
-                        ),
-                        SizedBox(width: 20),
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryColor,
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          child: IconButton(
-                            icon: Icon(Icons.add, color: Colors.white),
-                            onPressed: incrementQuantity,
-                          ),
-                        ),
-                      
-                      ],
-                    ),
-                    SizedBox(height: 12),
-                    // Rating Summary
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            '${widget.product.price} دينار / الكيلو', // e.g., "20 جنيه / الكيلو"
-                            style: TextStyles.bold16.copyWith(
-                              color: AppColors.primaryColor,
-                            ),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              '(30+)', // e.g., "(30+)"
-                              style: TextStyles.regular13.copyWith(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            SizedBox(width: 8),
-                            Text(
-                              '4.5', // e.g., "4.5"
-                              style: TextStyles.bold16,
-                            ),
-                            SizedBox(width: 4),
-                            Icon(Icons.star, color: Colors.amber, size: 20),
-                            SizedBox(width: 8),
-
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ReviewsView(
-                                      productId: widget.product.id,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Text.rich(
-                                TextSpan(
-                                  text: 'المراجعة',
-                                  style: TextStyles.regular22.copyWith(
-                                    color: AppColors.primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16),
-                    // Product Description
-                    Text(
-                      widget
-                          .product
-                          .description, // e.g., Watermelon description
-                      style: TextStyles.regular16.copyWith(
-                        color: Colors.grey[700],
+                    _buildHeroSection(),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(18, 18, 18, 28),
+                      child: Column(
+                        children: [
+                          _buildInfoAndQuantitySection(context),
+                          const SizedBox(height: 20),
+                          _buildDescriptionSection(),
+                          const SizedBox(height: 22),
+                          _buildFeaturesGrid(),
+                        ],
                       ),
-                      textAlign: TextAlign.right,
-                    ),
-                    SizedBox(height: 24),
-                    // Quantity Selector
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //       Text(
-                    //       '${widget.product.price} دينار / الكيلو', // e.g., "20 جنيه / الكيلو"
-                    //       style: TextStyles.bold16.copyWith(
-                    //         color: AppColors.primaryColor,
-                    //       ),
-                    //     ),
-                    //     // Container(
-                    //     //   width: 50,
-                    //     //   height: 50,
-                    //     //   decoration: BoxDecoration(
-                    //     //     color: Colors.grey[200],
-                    //     //     borderRadius: BorderRadius.circular(25),
-                    //     //   ),
-                    //     //   child: IconButton(
-                    //     //     icon: Icon(
-                    //     //       Icons.remove,
-                    //     //       color: AppColors.primaryColor,
-                    //     //     ),
-                    //     //     onPressed: decrementQuantity,
-                    //     //   ),
-                    //     // ),
-                    //     // SizedBox(width: 20),
-                    //     // Text(
-                    //     //   quantity.toString(), // e.g., "4"
-                    //     //   style: TextStyles.bold19,
-                    //     // ),
-                    //     // SizedBox(width: 20),
-                    //     // Container(
-                    //     //   width: 50,
-                    //     //   height: 50,
-                    //     //   decoration: BoxDecoration(
-                    //     //     color: AppColors.primaryColor,
-                    //     //     borderRadius: BorderRadius.circular(25),
-                    //     //   ),
-                    //     //   child: IconButton(
-                    //     //     icon: Icon(Icons.add, color: Colors.white),
-                    //     //     onPressed: incrementQuantity,
-                    //     //   ),
-                    //     // ),
-                    //   ],
-                    // ),
-                    SizedBox(height: 32),
-                    // Product Features Grid (3 columns, 2 rows)
-                    GridView.count(
-                      crossAxisCount: 2,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        _buildFeatureCard(
-                          Assets.imagesLotus,
-                          '100%',
-                          'أورجانيك',
-                        ), // Organic
-                        _buildFeatureCard(
-                          Assets.imagesCalendar,
-                          'عام',
-                          'الصلاحية',
-                        ), // Expiry
-                        _buildFeatureCard(
-                          Assets.imagesGroup36850,
-                          '80 كالوري',
-                          '100 جرام',
-                        ), // Calories
-                        _buildFeatureCard(
-                          Assets.imagesGroup36850,
-                          '4.8',
-                          '(256) Reviews',
-                        ), // Rating (duplicate for grid)
-                        // Add more if needed, or leave empty
-                        Container(), // Placeholder for 3x2 grid
-                      ],
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: CustomButton(
-          text: 'أضف الى السلة',
-          onPressed: () {
-            context.read<CartCubit>().addProduct(widget.product);
-            // add logic here mmm cubit, add to cart via CartCubit
-            // context.read<CartCubit>().addToCart(widget.product, quantity);
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('تم إضافة المنتج إلى السلة')),
-            );
-          },
-          color: AppColors.primaryColor,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+              child: CustomButton(
+                text: 'أضف إلى السلة',
+                onPressed: () {
+                  context.read<CartCubit>().addProduct(widget.product);
+                  showSuccessSnackBar(context, 'تم إضافة المنتج إلى السلة');
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //   SnackBar(content: Text('تم إضافة المنتج إلى السلة')),
+                  // );
+                },
+                color: AppColors.primaryColor,
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
+  Widget _buildHeroSection() {
+    return Container(
+      height: 340,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: Color(0xFFF4F4F4),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(28),
+          bottomRight: Radius.circular(28),
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(24, 54, 24, 20),
+              child: CachedNetworkImage(
+                imageUrl:
+                    widget.product.imageUrl ??
+                    'https://via.placeholder.com/400x400?text=Product',
+                fit: BoxFit.contain,
+                placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+                errorWidget: (context, url, error) => const Center(
+                  child: Icon(
+                    Icons.image_not_supported_outlined,
+                    size: 48,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 12,
+            left: 12,
+            child: _buildTopIconButton(
+              icon: Icons.share_outlined,
+              onTap: () {},
+            ),
+          ),
+          Positioned(
+            top: 12,
+            right: 12,
+            child: _buildTopIconButton(
+              icon: Icons.arrow_forward_ios_rounded,
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTopIconButton({
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return Container(
+      width: 42,
+      height: 42,
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.94),
+        shape: BoxShape.circle,
+      ),
+      child: IconButton(
+        onPressed: onTap,
+        icon: Icon(icon, color: Colors.black87, size: 20),
+      ),
+    );
+  }
+
+  Widget _buildInfoAndQuantitySection(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildQuantitySelector(),
+        const SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                widget.product.name,
+                textAlign: TextAlign.right,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyles.bold28.copyWith(
+                  color: const Color(0xFF111111),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '${widget.product.price} دينار / الكيلو',
+                textAlign: TextAlign.right,
+                style: TextStyles.bold16.copyWith(
+                  color: AppColors.primaryColor,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                alignment: WrapAlignment.end,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 8,
+                runSpacing: 4,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ReviewsView(productId: widget.product.id),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'المراجعات',
+                      style: TextStyles.regular16.copyWith(
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                  ),
+                  const Icon(Icons.star_rounded, color: Colors.amber, size: 19),
+                  Text(
+                    '4.5',
+                    style: TextStyles.bold16.copyWith(
+                      color: const Color(0xFF1A1A1A),
+                    ),
+                  ),
+                  Text(
+                    '(+30)',
+                    style: TextStyles.regular13.copyWith(
+                      color: const Color(0xFF9A9A9A),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildQuantitySelector() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF8F1),
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: const Color(0xFFF1E5D8), width: 1),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _buildQuantityButton(
+            icon: Icons.add,
+            backgroundColor: AppColors.primaryColor,
+            iconColor: Colors.white,
+            onTap: incrementQuantity,
+          ),
+          const SizedBox(width: 12),
+          Text(
+            quantity.toString(),
+            style: TextStyles.bold19.copyWith(color: const Color(0xFF1A1A1A)),
+          ),
+          const SizedBox(width: 12),
+          _buildQuantityButton(
+            icon: Icons.remove,
+            backgroundColor: const Color(0xFFF0F0F0),
+            iconColor: AppColors.primaryColor,
+            onTap: decrementQuantity,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildQuantityButton({
+    required IconData icon,
+    required Color backgroundColor,
+    required Color iconColor,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(18),
+      onTap: onTap,
+      child: Container(
+        width: 38,
+        height: 38,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          shape: BoxShape.circle,
+        ),
+        child: Icon(icon, color: iconColor, size: 20),
+      ),
+    );
+  }
+
+  Widget _buildDescriptionSection() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Row(
+            children: [
+              if (widget.product.description.trim().isNotEmpty) ...[
+                Text(
+                  'وصف المنتج',
+                  style: TextStyles.bold16.copyWith(
+                    color: const Color(0xFF1A1A1A),
+                    fontWeight: FontWeight.w700,
+                  ),
+                  textAlign: TextAlign.right,
+                ),
+                const SizedBox(height: 10),
+              ],
+            ],
+          ),
+          SizedBox(height: 6),
+          Text(
+            widget.product.description,
+            textAlign: TextAlign.right,
+            style: TextStyles.regular16.copyWith(
+              color: const Color(0xFF707070),
+              height: 1.9,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFeaturesGrid() {
+    return GridView.count(
+      crossAxisCount: 2,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      mainAxisSpacing: 12,
+      crossAxisSpacing: 12,
+      childAspectRatio: 1.18,
+      children: [
+        _buildFeatureCard(Assets.imagesCalendar, 'عام', 'الصلاحية'),
+        _buildFeatureCard(Assets.imagesLotus, '100%', 'أورجانيك'),
+        _buildFeatureCard(Assets.imagesGroup36850, '80 كالوري', '100 جرام'),
+        _buildFeatureCard(Assets.imagesGroup36850, '4.8', '256 مراجعة'),
+      ],
+    );
+  }
+
   Widget _buildFeatureCard(String assetName, String header, String subText) {
-    return Card(
-      elevation: 1,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF6EE),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFF1E7DB), width: 1),
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              assetName,
+              width: 30,
+              height: 30,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.error_outline,
+                  size: 24,
+                  color: Colors.grey,
+                );
+              },
+            ),
+            const SizedBox(width: 10),
             Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   header,
-                  style: TextStyles.bold13.copyWith(color: Colors.black),
-                  textAlign: TextAlign.center,
+                  style: TextStyles.bold13.copyWith(
+                    color: const Color(0xFF1A1A1A),
+                  ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   subText,
-                  style: TextStyles.regular11.copyWith(color: Colors.grey),
-                  textAlign: TextAlign.center,
+                  style: TextStyles.regular11.copyWith(
+                    color: const Color(0xFF9A9A9A),
+                  ),
                 ),
               ],
-            ),
-            SizedBox(width: 8),
-
-            Image.asset(
-              assetName,
-              width: 40,
-              height: 40,
-              errorBuilder: (context, error, stackTrace) {
-                return Icon(
-                  Icons.error,
-                  size: 40,
-                  color: Colors.grey,
-                ); // Fallback if asset missing
-              },
             ),
           ],
         ),

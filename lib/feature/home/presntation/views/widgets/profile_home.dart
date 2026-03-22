@@ -18,7 +18,20 @@ class ProfileHome extends StatelessWidget {
             // Navigate to profile view
             GoRouter.of(context).push(AppRouter.kProfileView);
           },
-          child: Image.asset(Assets.imagesProfileImage, width: 54, height: 54),
+          child: Container(
+            width: 65,
+            height: 65,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: const Color(0xFFF57C00), width: 2),
+            ),
+            child: ClipOval(
+              child: Image.asset(
+                Assets.imagesProfileAlwadi2,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
         ),
         SizedBox(width: 11),
         Column(

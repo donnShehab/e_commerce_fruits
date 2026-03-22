@@ -1,7 +1,6 @@
 import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
-
 import 'package:go_router/go_router.dart';
 
 class BestSellingHeader extends StatelessWidget {
@@ -11,7 +10,10 @@ class BestSellingHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('الاكثر مبيعًا', style: TextStyles.bold16),
+        Text(
+          'الأكثر مبيعًا',
+          style: TextStyles.bold19.copyWith(color: const Color(0xFF1A1A1A)),
+        ),
         const Spacer(),
         GestureDetector(
           onTap: () {
@@ -19,8 +21,8 @@ class BestSellingHeader extends StatelessWidget {
           },
           child: Text(
             'المزيد',
-            style: TextStyles.regular13.copyWith(
-              color: const Color(0xff949D9E),
+            style: TextStyles.semiBold13.copyWith(
+              color: const Color.fromARGB(255, 69, 73, 73),
             ),
           ),
         ),

@@ -10,9 +10,11 @@ class ClickableTextSpan extends StatelessWidget {
     required this.text2,
     required this.gestureRecognizer,
   });
+
   final String? text1;
   final String text2;
   final GestureRecognizer gestureRecognizer;
+
   @override
   Widget build(BuildContext context) {
     return Text.rich(
@@ -20,17 +22,18 @@ class ClickableTextSpan extends StatelessWidget {
         children: [
           TextSpan(
             text: text1,
-            style: TextStyles.semiBold16.copyWith(color: Color(0xff949D9E)),
+            style: TextStyles.semiBold16.copyWith(
+              color: const Color(0xFF8C9495),
+            ),
           ),
           TextSpan(
             recognizer: gestureRecognizer,
             text: text2,
-            style: TextStyles.semiBold16.copyWith(
-              color: AppColors.primaryColor,
-            ),
+            style: TextStyles.bold16.copyWith(color: AppColors.primaryColor),
           ),
         ],
       ),
+      textAlign: TextAlign.center,
     );
   }
 }

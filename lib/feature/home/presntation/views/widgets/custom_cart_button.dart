@@ -15,9 +15,13 @@ class CustomCartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartItemCubit, CartItemState>(
       builder: (context, state) {
+        final total = context
+            .watch<CartCubit>()
+            .cartEntity
+            .calculateTotalPrice();
+
         return CustomButton(
-          text:
-              'الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} دينار',
+          text: 'الدفع $total دينار',
           onPressed: () {
             if (context.read<CartCubit>().cartEntity.cartItems.isNotEmpty) {
               context.push(

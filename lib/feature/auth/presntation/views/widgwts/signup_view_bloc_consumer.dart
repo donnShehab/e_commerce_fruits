@@ -1,3 +1,4 @@
+import 'package:e_coomerce_fruit/core/helper_functions/showSuccessSnackBar.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/signup_cubits/signup_cubit.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/signup_cubits/signup_state.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/views/widgwts/signup_view_body.dart';
@@ -18,9 +19,10 @@ class SignupViewBodyBlocConsumer extends StatelessWidget {
           Navigator.pop(context);
         }
         if (state is SignupFailure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
+         showSuccessSnackBar(context, state.message);
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   SnackBar(content: Text(state.message)),
+          // );
         }
       },
       builder: (context, state) {

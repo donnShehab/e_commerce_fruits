@@ -1,5 +1,6 @@
 import 'package:e_coomerce_fruit/constants.dart';
 import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
+import 'package:e_coomerce_fruit/core/helper_functions/showSuccessSnackBar.dart';
 import 'package:e_coomerce_fruit/core/services/get_it_services.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
@@ -70,15 +71,11 @@ class _OtpPasswordViewState extends State<OtpPasswordView> {
         body: BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
           listener: (context, state) {
             if (state is ResetPasswordSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('تم إعادة تعيين كلمة المرور بنجاح!')),
-              );
+             showSuccessSnackBar(context, 'تم إعادة تعيين كلمة المرور بنجاح');
               GoRouter.of(context).push(AppRouter.kSigninView);
             }
             if (state is ResetPasswordFailure) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.message)));
+            showSuccessSnackBar(context, state.message);
             }
           },
           builder: (context, state) {

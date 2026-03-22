@@ -5,23 +5,25 @@ import 'package:flutter/material.dart';
 class FeaturedItemButton extends StatelessWidget {
   const FeaturedItemButton({super.key, required this.onPressed});
   final VoidCallback onPressed;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 32,
+      height: 40,
       child: TextButton(
         style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           backgroundColor: Colors.white,
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 22),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
         ),
         onPressed: onPressed,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: FittedBox(
-            child: Text(
-              'تسوق الان',
-              style: TextStyles.bold13.copyWith(color: AppColors.primaryColor),
-            ),
+        child: FittedBox(
+          child: Text(
+            'تسوّق الآن',
+            style: TextStyles.bold13.copyWith(color: AppColors.primaryColor),
           ),
         ),
       ),

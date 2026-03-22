@@ -8,30 +8,38 @@ class CustomPasswordField extends StatefulWidget {
     this.validator,
     this.hintText,
   });
+
   final String? hintText;
   final void Function(String?)? onSaved;
   final String? Function(String?)? validator;
+
   @override
   State<CustomPasswordField> createState() => _CustomPasswordFieldState();
 }
 
 class _CustomPasswordFieldState extends State<CustomPasswordField> {
   bool obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
       obscureText: obscureText,
       onSaved: widget.onSaved,
+      validator: widget.validator,
       suffixIcon: GestureDetector(
         onTap: () {
-          obscureText = !obscureText;
-          setState(() {});
+          setState(() {
+            obscureText = !obscureText;
+          });
         },
-        child: obscureText
-            ? const Icon(Icons.remove_red_eye, color: Color(0xffC9CECF))
-            : const Icon(Icons.visibility_off, color: Color(0xffC9CECF)),
+        child: Icon(
+          obscureText
+              ? Icons.visibility_outlined
+              : Icons.visibility_off_outlined,
+          color: const Color(0xFFB8BDBE),
+        ),
       ),
-      hintText: widget.hintText ?? 'كلمه المرور',
+      hintText: widget.hintText ?? 'كلمة المرور',
       textInputType: TextInputType.visiblePassword,
     );
   }

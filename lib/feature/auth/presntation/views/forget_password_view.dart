@@ -1,5 +1,6 @@
 import 'package:e_coomerce_fruit/constants.dart';
 import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
+import 'package:e_coomerce_fruit/core/helper_functions/showSuccessSnackBar.dart';
 import 'package:e_coomerce_fruit/core/services/get_it_services.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
@@ -42,9 +43,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
               );
             }
             if (state is ResetPasswordFailure) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.message)));
+            showSuccessSnackBar(context, state.message);
             }
           },
           builder: (context, state) {
