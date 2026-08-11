@@ -3,7 +3,7 @@ import 'package:e_coomerce_fruit/constants.dart';
 import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
 import 'package:e_coomerce_fruit/core/services/shared_preferences_singleton.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
-import 'package:e_coomerce_fruit/core/widgets/custom_button.dart';
+import 'package:e_coomerce_fruit/core/widgets/app_button.dart';
 import 'package:e_coomerce_fruit/feature/on_boarding/presntation/widgets/on_boarding_page_view.dart';
 
 import 'package:flutter/material.dart';
@@ -64,7 +64,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             maintainAnimation: true,
             maintainSize: true,
             visible: currentPage == 1 ? true : false,
-            child: CustomButton(
+            child: AppButton.filled(
               onPressed: () {
                 GoRouter.of(context).push(AppRouter.kSigninView);
                 Prefs.setBool(kIsOnBoardingViewSeen, true);

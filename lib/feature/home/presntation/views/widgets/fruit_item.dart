@@ -1,12 +1,10 @@
 import 'package:e_coomerce_fruit/core/entities/product_entity.dart';
-import 'package:e_coomerce_fruit/core/helper_functions/app_router.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
-import 'package:e_coomerce_fruit/core/utils/app_images.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
+import 'package:e_coomerce_fruit/core/widgets/circle_icon_button.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class FruitItem extends StatelessWidget {
   const FruitItem({super.key, required this.productEntity});
@@ -113,14 +111,14 @@ class FruitItem extends StatelessWidget {
                       ],
                     ),
                   ),
-                  trailing: GestureDetector(
-                    onTap: () {
+                  trailing: CircleIconButton(
+                    icon: Icons.add,
+                    iconColor: Colors.white,
+                    color: AppColors.primaryColor,
+                    visualSize: 40,
+                    onPressed: () {
                       context.read<CartCubit>().addProduct(productEntity);
                     },
-                    child: CircleAvatar(
-                      backgroundColor: AppColors.primaryColor,
-                      child: Icon(Icons.add, color: Colors.white),
-                    ),
                   ),
                 ),
               ],

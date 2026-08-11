@@ -1,3 +1,4 @@
+import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,11 +16,10 @@ class CartHeader extends StatelessWidget {
         child: Text(
           'لديك ${context.watch<CartCubit>().cartEntity.cartItems.length} منتجات في سله التسوق',
           style: const TextStyle(
-            color: Color(0xFF1B5E37),
+            color: AppColors.primaryColor,
             fontSize: 13,
             fontFamily: 'Cairo',
             fontWeight: FontWeight.w400,
-            height: 0.12,
           ),
         ),
       ),

@@ -28,7 +28,7 @@ class ShippingAddresWidget extends StatelessWidget {
             onTap: () {
               pageController.animateToPage(
                 1,
-                duration: Duration(microseconds: 300),
+                duration: Duration(milliseconds: 300),
                 curve: Curves.easeIn,
               );
             },

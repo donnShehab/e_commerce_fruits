@@ -4,7 +4,7 @@ import 'package:e_coomerce_fruit/core/services/get_it_services.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_app_bar.dart';
-import 'package:e_coomerce_fruit/core/widgets/custom_button.dart';
+import 'package:e_coomerce_fruit/core/widgets/app_button.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_password_field.dart';
 import 'package:e_coomerce_fruit/feature/auth/domain/repos/auth_repos.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/reset_password/reset_password_cubit.dart';
@@ -82,7 +82,7 @@ class _OtpPasswordViewState extends State<OtpPasswordView> {
             }
           },
           builder: (context, state) {
-            return Padding(
+            return SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
                 horizontal: kHorizintalPadding,
               ),
@@ -98,10 +98,14 @@ class _OtpPasswordViewState extends State<OtpPasswordView> {
                     ),
                     SizedBox(height: 24),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(
                         6, // تغيير من 4 إلى 6
-                        (index) => _buildOtpTextField(index),
+                        (index) => Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 3),
+                            child: _buildOtpTextField(index),
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(height: 24),
@@ -113,7 +117,7 @@ class _OtpPasswordViewState extends State<OtpPasswordView> {
                       validator: Validate.password,
                     ),
                     SizedBox(height: 24),
-                    CustomButton(
+                    AppButton.filled(
                       text: 'إعادة تعيين كلمة المرور',
                       onPressed: state is ResetPasswordLoading
                           ? null
@@ -157,7 +161,7 @@ class _OtpPasswordViewState extends State<OtpPasswordView> {
 
   Widget _buildOtpTextField(int index) {
     return Container(
-      width: 50, // قلل العرض قليلاً ليتناسب مع 6 حقول (كان 60)
+      // العرض يأتي من Expanded في الأعلى — يمنع overflow على 320dp
       height: 60,
       decoration: BoxDecoration(
         border: Border.all(

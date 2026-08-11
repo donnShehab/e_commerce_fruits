@@ -1,7 +1,8 @@
+import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
+import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/domain/entites/bottom_navigation_bar_entity.dart';
-import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/active_navigation_item_bar.dart';
-import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/in_active_navigation_item_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart' show SvgPicture;
 
 class NavigationBarItem extends StatelessWidget {
   const NavigationBarItem({
@@ -14,62 +15,73 @@ class NavigationBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isSelected
-        ? ActiveNavigationItemBar(
-            image: bottomNavigationBarEntity.activeItem,
-            name: bottomNavigationBarEntity.name,
-          )
-        : InActiveNavigationItemBar(
-            image: bottomNavigationBarEntity.inActiveItem,
-          );
+    return NavigationItemContent(
+      isActive: isSelected,
+      name: bottomNavigationBarEntity.name,
+      image: isSelected
+          ? bottomNavigationBarEntity.activeItem
+          : bottomNavigationBarEntity.inActiveItem,
+    );
   }
 }
 
-// import 'package:flutter/material.dart';
-// import 'package:fruit_hub/feature/home/domain/entites/bottom_navigation_bar_entity.dart';
-// import 'package:fruit_hub/feature/home/presntation/views/widgets/active_navigation_item_bar.dart';
-// import 'package:fruit_hub/feature/home/presntation/views/widgets/in_active_navigation_item_bar.dart';
+class NavigationItemContent extends StatelessWidget {
+  const NavigationItemContent({
+    super.key,
+    required this.isActive,
+    required this.name,
+    required this.image,
+  });
+  final bool isActive;
+  final String name;
+  final String image;
 
-// class AnimatedNavigationBarItem extends StatelessWidget {
-//   final bool isSelected;
-//   final BottomNavigationBarEntity entity;
-
-//   const AnimatedNavigationBarItem({
-//     super.key,
-//     required this.isSelected,
-//     required this.entity,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AnimatedSwitcher(
-//       duration: const Duration(milliseconds: 400),
-//       transitionBuilder: (child, animation) {
-//         // نستخدم Slide + Fade مع بعض
-//         return SlideTransition(
-//           position: Tween<Offset>(
-//             begin: const Offset(0.0, 0.3), // من تحت لفوق
-//             end: Offset.zero,
-//           ).animate(CurvedAnimation(
-//             parent: animation,
-//             curve: Curves.easeOutBack,
-//           )),
-//           child: FadeTransition(
-//             opacity: animation,
-//             child: child,
-//           ),
-//         );
-//       },
-//       child: isSelected
-//           ? ActiveNavigationItemBar(
-//               key: ValueKey("${entity.name}_active"),
-//               image: entity.activeItem,
-//               name: entity.name,
-//             )
-//           : InActiveNavigationItemBar(
-//               key: ValueKey("${entity.name}_inactive"),
-//               image: entity.inActiveItem,
-//             ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    if (!isActive) {
+      return Container(
+        color: Colors.transparent,
+        child: SvgPicture.asset(image),
+      );
+    }
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.only(left: 7),
+        decoration: ShapeDecoration(
+          color: const Color(0xFFEEEEEE),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 30,
+              height: 30,
+              decoration: ShapeDecoration(
+                color: AppColors.primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: Center(child: SvgPicture.asset(image)),
+            ),
+            const SizedBox(width: 4),
+            // Flexible + ellipsis: يمنع الـ overflow عند تكبير حجم الخط
+            Flexible(
+              child: Text(
+                name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyles.semiBold11.copyWith(
+                  color: AppColors.primaryColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

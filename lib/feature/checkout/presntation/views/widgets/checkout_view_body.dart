@@ -4,7 +4,7 @@ import 'package:e_coomerce_fruit/constants.dart';
 import 'package:e_coomerce_fruit/core/helper_functions/build_error_bar.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/utils/app_keys.dart';
-import 'package:e_coomerce_fruit/core/widgets/custom_button.dart';
+import 'package:e_coomerce_fruit/core/widgets/app_button.dart';
 import 'package:e_coomerce_fruit/feature/checkout/domain/entites/order_input_entity.dart';
 import 'package:e_coomerce_fruit/feature/checkout/domain/entites/paypal_payment_entity/paypal_payment_entity.dart';
 import 'package:e_coomerce_fruit/feature/checkout/presntation/add_order_cubit/add_order_cubit.dart';
@@ -87,7 +87,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               formKey: _formKey,
             ),
           ),
-          CustomButton(
+          AppButton.filled(
             text: getNextButtonTetx(currentPageIndex),
             onPressed: () {
               if (currentPageIndex == 0) {
@@ -112,8 +112,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     if (context.read<OrderInputEntity>().payWithCash != null) {
       pageController.animateToPage(
         currentPageIndex + 1,
-        duration: Duration(microseconds: 300),
-        curve: Curves.bounceIn,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeIn,
       );
     } else {
       showBar(context, 'يرجى تحديد طريقة الدفع');
@@ -138,8 +138,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       _formKey.currentState!.save();
       pageController.animateToPage(
         currentPageIndex + 1,
-        duration: Duration(microseconds: 300),
-        curve: Curves.bounceIn,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeIn,
       );
     } else {
       valueNotifier.value = AutovalidateMode.always;

@@ -13,22 +13,32 @@ class ProfileHome extends StatelessWidget {
       children: [
         Image.asset(Assets.imagesProfileImage, width: 54, height: 54),
         SizedBox(width: 11),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'صباح الخير ..!',
-              style: TextStyle(
-                fontSize: 14,
-                color: Color(0xff949D9E),
-                fontWeight: FontWeight.w400,
+        // Expanded بدل Spacer: الاسم الطويل يقصّ بدل أن يسبب overflow
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'صباح الخير ..!',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Color(0xff949D9E),
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
-            SizedBox(height: 4),
-            Text(getUser().name, style: TextStyles.bold16),
-          ],
+              SizedBox(height: 4),
+              Text(
+                getUser().name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyles.bold16,
+              ),
+            ],
+          ),
         ),
-        Spacer(), // ✅ خليه يوزع المسافة
+        SizedBox(width: 8),
         CustomNofitication(),
       ],
     );

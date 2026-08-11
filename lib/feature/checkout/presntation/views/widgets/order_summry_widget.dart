@@ -42,7 +42,7 @@ class OrderSummryWidget extends StatelessWidget {
                       color: const Color(0xFF4E5556),
                     ),
                   ),
-                  const SizedBox(width: 237),
+                  const Spacer(),
                   Text(
                     '3 دنانير',
                     textAlign: TextAlign.right,

@@ -1,6 +1,5 @@
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -23,7 +22,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-
+      textDirection: textDirection,
       obscureText: obscureText,
       onSaved: onSaved,
       validator:

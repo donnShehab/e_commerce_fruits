@@ -1,3 +1,4 @@
+import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AddProductButton extends StatelessWidget {
@@ -13,7 +14,7 @@ class AddProductButton extends StatelessWidget {
         width: 36,
         height: 36,
         decoration: BoxDecoration(
-          color: const Color(0xff1B5E37),
+          color: AppColors.primaryColor,
           borderRadius: BorderRadius.circular(22),
         ),
         child: IconButton(

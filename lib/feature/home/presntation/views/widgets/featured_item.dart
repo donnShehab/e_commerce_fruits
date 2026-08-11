@@ -1,16 +1,20 @@
 import 'package:e_coomerce_fruit/core/utils/app_images.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
-import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/featured_item_button.dart';
+import 'package:e_coomerce_fruit/core/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
 
 class FeaturedItem extends StatelessWidget {
-  const FeaturedItem({super.key});
+  const FeaturedItem({super.key, required this.width});
+
+  /// العرض الفعلي المتاح — يأتي من LayoutBuilder في FeaturedList
+  final double width;
+
   @override
   Widget build(BuildContext context) {
-    var itemWidth = MediaQuery.sizeOf(context).width - 32;
+    final itemWidth = width;
     return ClipRRect(
       borderRadius: BorderRadius.circular(4),
       child: SizedBox(
@@ -55,7 +59,7 @@ class FeaturedItem extends StatelessWidget {
                         style: TextStyles.bold19.copyWith(color: Colors.white),
                       ),
                       const SizedBox(height: 11),
-                      FeaturedItemButton(onPressed: () {}),
+                      AppButton.compact(text: 'تسوق الان', onPressed: () {}),
                       const SizedBox(height: 29),
                     ],
                   ),

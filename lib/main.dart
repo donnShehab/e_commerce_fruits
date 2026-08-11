@@ -7,12 +7,14 @@ import 'package:e_coomerce_fruit/firebase_options.dart';
 import 'package:e_coomerce_fruit/generated/l10n.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = CustomBlocObserver();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Prefs.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
@@ -30,7 +32,7 @@ class FruitsHub extends StatelessWidget {
       locale: const Locale('ar'),
 
       theme: ThemeData(
-        fontFamily: 'Cario',
+        fontFamily: 'Cairo',
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
       ),

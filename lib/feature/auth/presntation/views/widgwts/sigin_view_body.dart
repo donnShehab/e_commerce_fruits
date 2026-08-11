@@ -6,12 +6,11 @@ import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/utils/app_images.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_app_bar.dart';
-import 'package:e_coomerce_fruit/core/widgets/custom_button.dart';
+import 'package:e_coomerce_fruit/core/widgets/app_button.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_password_field.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_text_form_field.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/signin_cubits/signin_cubit.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/views/widgwts/clickable_text_span.dart';
-import 'package:e_coomerce_fruit/feature/auth/presntation/views/widgwts/custom_button_social_media.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/views/widgwts/on_divider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +85,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 ),
 
                 SizedBox(height: 33),
-                CustomButton(
+                AppButton.filled(
                   text: 'تسجيل دخول',
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
@@ -110,34 +109,33 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 OrDivider(),
                 SizedBox(height: 16),
 
-                CustomButtonSocialMediaa(
+                AppButton.outlined(
                   onPressed: () {
                     context.read<SigninCubit>().signInWithGoogle();
                   },
-                  title: 'تسجيل بواسطة جوجل',
-                  imageSocial: SvgPicture.asset(Assets.imagesGoogleIcon),
+                  text: 'تسجيل بواسطة جوجل',
+                  leading: SvgPicture.asset(Assets.imagesGoogleIcon),
                 ),
                 SizedBox(height: 12),
                 Platform.isIOS
                     ? Column(
                         children: [
-                          CustomButtonSocialMediaa(
-                            title: 'تسجيل بواسطة أبل',
-                            imageSocial: SvgPicture.asset(
-                              Assets.imagesApplIcon,
-                            ),
+                          AppButton.outlined(
+                            onPressed: null,
+                            text: 'تسجيل بواسطة أبل',
+                            leading: SvgPicture.asset(Assets.imagesApplIcon),
                           ),
                         ],
                       )
                     : SizedBox(),
                 SizedBox(height: 12),
 
-                CustomButtonSocialMediaa(
+                AppButton.outlined(
                   onPressed: () {
                     context.read<SigninCubit>().signInWithFacebook();
                   },
-                  title: 'تسجيل بواسطة فيسبوك',
-                  imageSocial: SvgPicture.asset(Assets.imagesFacebookIcon),
+                  text: 'تسجيل بواسطة فيسبوك',
+                  leading: SvgPicture.asset(Assets.imagesFacebookIcon),
                 ),
               ],
             ),

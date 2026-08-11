@@ -1,6 +1,5 @@
 import 'package:e_coomerce_fruit/constants.dart';
 import 'package:e_coomerce_fruit/core/cubit/products_cubit.dart';
-import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/best_selling_grid_view.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/products_grid_view_bloc+builder.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/best_selling_header.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/featured_list.dart';
@@ -26,27 +25,32 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsGeometry.symmetric(horizontal: kHorizintalPadding),
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                SizedBox(height: 38),
-                ProfileHome(),
-                SizedBox(height: 16),
-                SearchTextField(),
-                SizedBox(height: 12),
-                FeaturedList(),
-                SizedBox(height: 20),
-                BestSellingHeader(),
-                SizedBox(height: 8),
-              ],
+    // bottom: false — الـ bottomNavigationBar في MainView يتكفل بالحافة السفلية
+    return SafeArea(
+      bottom: false,
+      child: Padding(
+        padding: EdgeInsetsGeometry.symmetric(horizontal: kHorizintalPadding),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  // كان 38 لتعويض شريط الحالة يدويًا — SafeArea يتكفل بذلك الآن
+                  SizedBox(height: 16),
+                  ProfileHome(),
+                  SizedBox(height: 16),
+                  SearchTextField(),
+                  SizedBox(height: 12),
+                  FeaturedList(),
+                  SizedBox(height: 20),
+                  BestSellingHeader(),
+                  SizedBox(height: 8),
+                ],
+              ),
             ),
-          ),
-          ProductsGridViewBlocBuilder(),
-        ],
+            ProductsGridViewBlocBuilder(),
+          ],
+        ),
       ),
     );
   }

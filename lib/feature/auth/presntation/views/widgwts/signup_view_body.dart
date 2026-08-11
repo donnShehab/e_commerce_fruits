@@ -3,7 +3,7 @@ import 'package:e_coomerce_fruit/core/helper_functions/build_error_bar.dart';
 import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/utils/phone_utils.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_app_bar.dart';
-import 'package:e_coomerce_fruit/core/widgets/custom_button.dart';
+import 'package:e_coomerce_fruit/core/widgets/app_button.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_password_field.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_text_form_field.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/signup_cubits/signup_cubit.dart';
@@ -80,7 +80,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   },
                 ),
                 SizedBox(height: 30),
-                CustomButton(
+                AppButton.filled(
                   color: AppColors.primaryColor,
                   onPressed: () {
                     if (fromKey.currentState!.validate()) {

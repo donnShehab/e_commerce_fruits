@@ -36,9 +36,7 @@ class ShippingItem extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                isSelected
-                    ? ActiveShippingItemDot()
-                    : InActiveShippingItemDot(),
+                ShippingItemDot(isActive: isSelected),
                 SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,11 +70,23 @@ class ShippingItem extends StatelessWidget {
   }
 }
 
-class ActiveShippingItemDot extends StatelessWidget {
-  const ActiveShippingItemDot({super.key});
+class ShippingItemDot extends StatelessWidget {
+  const ShippingItemDot({super.key, required this.isActive});
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
+    if (!isActive) {
+      return Container(
+        width: 18,
+        height: 18,
+        decoration: ShapeDecoration(
+          shape: OvalBorder(
+            side: BorderSide(width: 2, color: Color(0xFF949D9E)),
+          ),
+        ),
+      );
+    }
     return Container(
       padding: EdgeInsets.all(2),
       width: 18,
@@ -91,21 +101,6 @@ class ActiveShippingItemDot extends StatelessWidget {
           shape: OvalBorder(),
           color: AppColors.primaryColor,
         ),
-      ),
-    );
-  }
-}
-
-class InActiveShippingItemDot extends StatelessWidget {
-  const InActiveShippingItemDot({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 18,
-      height: 18,
-      decoration: ShapeDecoration(
-        shape: OvalBorder(side: BorderSide(width: 2, color: Color(0xFF949D9E))),
       ),
     );
   }

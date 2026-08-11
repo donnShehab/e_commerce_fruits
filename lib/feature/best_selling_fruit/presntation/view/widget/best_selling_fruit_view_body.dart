@@ -7,13 +7,8 @@ class BestSellingFruitViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(),
-          ProductsGridView(products: getDummyProducts()),
-        ],
-      ),
+    return CustomScrollView(
+      slivers: [ProductsGridView(products: getDummyProducts())],
     );
   }
 }

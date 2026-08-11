@@ -1,3 +1,4 @@
+import 'package:e_coomerce_fruit/core/widgets/custom_app_bar.dart';
 import 'package:e_coomerce_fruit/feature/home/presntation/views/widgets/profile_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,14 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: ProfileViewBody());
+    return Scaffold(
+      appBar: buildAppBar(
+        context,
+        title: 'حسابي',
+        showBackButton: false,
+        showNotification: false,
+      ),
+      body: ProfileViewBody(),
+    );
   }
 }

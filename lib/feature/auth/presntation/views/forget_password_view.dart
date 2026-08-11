@@ -5,7 +5,7 @@ import 'package:e_coomerce_fruit/core/utils/app_colors.dart';
 import 'package:e_coomerce_fruit/core/utils/app_text_styles.dart';
 import 'package:e_coomerce_fruit/core/utils/phone_utils.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_app_bar.dart';
-import 'package:e_coomerce_fruit/core/widgets/custom_button.dart';
+import 'package:e_coomerce_fruit/core/widgets/app_button.dart';
 import 'package:e_coomerce_fruit/core/widgets/custom_text_form_field.dart';
 import 'package:e_coomerce_fruit/feature/auth/domain/repos/auth_repos.dart';
 import 'package:e_coomerce_fruit/feature/auth/presntation/cubits/reset_password/reset_password_cubit.dart';
@@ -48,7 +48,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
             }
           },
           builder: (context, state) {
-            return Padding(
+            return SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
                 horizontal: kHorizintalPadding,
               ),
@@ -76,7 +76,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       validator: Validate.phoneNumber,
                     ),
                     SizedBox(height: 31),
-                    CustomButton(
+                    AppButton.filled(
                       onPressed: state is ResetPasswordLoading
                           ? null
                           : () {
